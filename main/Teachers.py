@@ -3,5 +3,6 @@ class Teacher(object):
 	def __init__(self, id, password):
 		self.teacher_id = id
 		self.teacher_password = password
+
 	
 		
