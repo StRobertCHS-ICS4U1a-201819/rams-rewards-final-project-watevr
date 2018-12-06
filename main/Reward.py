@@ -1,8 +1,10 @@
 import Classroom
+import Students
+import Teachers
 
-class Reward(object):
-	"""docstring for Reward"""
-	def __init__(self, activity, point):         #activity = str; point = int
-		super(Reward, self, point).__init__()
-		self.activity = activity
-        self.point = point
+student_file = 
+
+def reward(student, points):
+	teacher_id = input("Please input your ID: ")
+	password = input("Please input your password: ")
+	if teacher_id == 
