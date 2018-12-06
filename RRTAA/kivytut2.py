@@ -13,7 +13,7 @@ Builder.load_string('''
             on_press:
                 root.manager.transition.direction = "left"
                 root.manager.transition.duration = 1
-                root.manager,current = "screen_two"
+                root.manager.current = "screen_two"
 
 <ScreenTwo>:
     BoxLayout:
@@ -22,7 +22,7 @@ Builder.load_string('''
             on_press:
                 root.manager.transition.direction = "left"
                 root.manager.transition.duration = 1
-                root.manager,current = "screen_one"
+                root.manager.current = "screen_one"
 ''')
 
 class ScreenOne(Screen):
