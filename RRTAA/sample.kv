@@ -6,9 +6,21 @@
 <CustomPopup>:
     size_hint: .5, .5
     auto_dismiss: False
-    title: "The Popup"
+    title: "Reward Activities"
     Button:
-        text: "Close"
+        text: "Highest Mark"
+        on_press: root.dismiss()
+    Button:
+        text: "Average over 85"
+        on_press: root.dismiss()
+    Button:
+        text: "Club Meeting"
+        on_press: root.dismiss()
+    Button:
+        text: "Sport Team"
+        on_press: root.dismiss()
+    Button:
+        text: "Activities Leader"
         on_press: root.dismiss()
 
 SampBoxLayout:
@@ -104,8 +116,8 @@ SampBoxLayout:
             size_hint_x: .25
 
             Spinner:
-                text: "First"
-                values: ["First", "Second", "Third"]
+                text: "Reward Activities"
+                values: ["Highest Mark", "Average over 85", "Club Meeting", "Sport Team", "Activities Leader"]
                 id: spinner_id
                 on_text: root.spinner_clicked(spinner_id.text)
 
