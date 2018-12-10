@@ -1,7 +1,7 @@
 import kivy
 kivy.require("1.10.1")
 
-import Classroom
+from main import Classroom
 
 from kivy.app import App
 from kivy.properties import ObjectProperty
