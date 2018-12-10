@@ -1,7 +1,5 @@
 #: import main rrsa
 
-Rrsa:
-
 <Rrsa>:
     orientation: "vertical"
     full_name_text_input: full_name
@@ -38,7 +36,7 @@ Rrsa:
         Button:
             text: "Submit"
             size_hint_x: .3
-            on_press: root.view_student_rp()
+            on_press: root.login_success()
 
     BoxLayout:
         Button:
@@ -46,10 +44,14 @@ Rrsa:
 
         Button:
             text: "View Student Info"
+            on_press: root.view_student_info()
 
     BoxLayout:
         Button:
             text: "View Rewards History"
+
+
+
 
 
 
