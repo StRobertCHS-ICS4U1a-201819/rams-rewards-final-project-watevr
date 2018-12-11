@@ -2,11 +2,16 @@ import Students
 import Teachers
 
 student_file = open('Students.txt', 'r+')
+teacher_file = open('Teachers.txt', 'r+')
 studentList = student_file.readlines()
+teacherList = teacher_list.readlines()
 student_newList = []
 
 for lst in studentList:
 	student_newList.append(lst.split(","))
+
+for lst in teacherList:
+	teacher_newList.append(lst.split(","))
 
 class Classroom(object):
 	"""docstring for Classroom"""
