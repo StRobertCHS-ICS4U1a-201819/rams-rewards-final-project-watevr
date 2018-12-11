@@ -17,7 +17,7 @@ for lst in teacherList:
 class Classroom(Student):
 	"""docstring for Classroom"""
 	def __init__(self):
-		super().__init__()
+		super().__init__()      #get class "student"
 
 		self.student_list = []
 		self.teacher_list = []
