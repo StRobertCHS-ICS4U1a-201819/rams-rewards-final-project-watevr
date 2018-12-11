@@ -6,7 +6,7 @@ class Teacher(object):
 		self.teacher_id = ID
 		self.teacher_password = password
 
-MrFabroa = Teacher(1, "admin")
+
 
 	
 		
