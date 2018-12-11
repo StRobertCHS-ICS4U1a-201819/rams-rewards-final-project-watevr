@@ -2,7 +2,8 @@ import Classroom
 import Students
 import Teachers
 
-student_file = 
+activity = open("RewardActivity.txt", "r+")
+
 
 def reward(student, points):
 	teacher_id = input("Please input your ID: ")
