@@ -24,6 +24,16 @@ class Rrsa(BoxLayout):
             if self.student_list[i] == student_name and self.student_password_list[i] == student_password:
                 popup.open()
 
+    def view_student_rp(self):
+        student_name = self.full_name_text_input.text
+        student_password = self.password_text_input.text
+        for i in range(len(self.student_list)):
+            if self.student_list[i] == student_name and self.student_password_list[i] == student_password:
+                reward_points = self.student_reward_points[i]
+                popup = Popup(title='Student Reward Points',
+                              title_size=16, content=Label(text=student_name + "'s Reward Points: " +
+                              str(reward_points)), size_hint=(.5, .3), size=(400, 400))
+                popup.open()
 
     def view_student_info(self):
         pass
@@ -33,10 +43,6 @@ class Rrsa(BoxLayout):
 
     def view_student_history(self):
         pass
-
-
-class Popup(Popup):
-    pass
 
 class RrsaApp(App):
 
