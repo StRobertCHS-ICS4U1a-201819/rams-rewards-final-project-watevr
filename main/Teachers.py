@@ -4,6 +4,9 @@ class Teacher(object):
 		self.teacher_id = id
 		self.teacher_password = password
 
+	def get_teachers_id(self):
+		return self.teacher_id
+
 MrFabroa = Teacher(1, "admin")
 
 	

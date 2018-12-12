@@ -1,7 +1,7 @@
 import kivy
 kivy.require("1.10.1")
 
-from main import Classroom
+from main import RewardsActivities
 
 from kivy.app import App
 from kivy.properties import ObjectProperty
@@ -12,7 +12,8 @@ class ScreenOne(Screen):
 
 class ScreenTwo(Screen):
     def spinner_clicked(self, value):
-        print("Spinner Value " + value)
+        point = value.get_point_value
+        print("Spinner Value " + point)
 
 class ScreenThree(Screen):
     pass
@@ -26,6 +27,11 @@ class Manager(ScreenManager):
 class ScreensApp(App):
     def build(self):
         return Manager()
+
+class Reward(object):
+    def __int__(self, activities, fullName):
+        self.act = activities
+        self.fullName = fullName
 
 
 ScreensApp().run()
