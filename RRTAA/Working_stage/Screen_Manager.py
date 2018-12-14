@@ -1,22 +1,28 @@
 import kivy
 kivy.require("1.10.1")
 
-from main import RewardsActivities
-
 from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.textinput import TextInput
+
+
+from RRTAA.package import RewardActivities
 
 class ScreenOne(Screen):
     pass
 
 class ScreenTwo(Screen):
     def spinner_clicked(self, value):
-        point = value.get_point_value
-        print("Spinner Value " + point)
+
+        print(RewardActivities.reward.get_point_value(value))
+        print("Spinner Value " + value)
 
 class ScreenThree(Screen):
-    pass
+
+    def student_scanner(self):
+        value = "Jerry Cui"
 
 class Manager(ScreenManager):
 
@@ -26,12 +32,20 @@ class Manager(ScreenManager):
 
 class ScreensApp(App):
     def build(self):
+
+
         return Manager()
 
-class Reward(object):
-    def __int__(self, activities, fullName):
-        self.act = activities
-        self.fullName = fullName
+class AnswerInput(BoxLayout):
+    textinput = TextInput(text='Hello world')
+
+    def on_enter(instance, value):
+        print('User pressed enter in', instance)
+
+    textinput = TextInput(text='Hello world', multiline=False)
+    textinput.bind(on_text_validate=on_enter)
+
+
 
 
 ScreensApp().run()

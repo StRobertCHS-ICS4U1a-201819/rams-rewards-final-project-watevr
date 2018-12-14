@@ -48,11 +48,21 @@
         padding: 20
 
         Label:
-            text: "Main Menu"
+            text: "appointed student"
         Button:
-            text: "Button 3"
+            text: "Use your phone to scan the barcode and enter the id of student in the box below"
             on_press:
                 root.manager.current = "screen1"
+
+    BoxLayout:
+        height: "40dp"
+        size_hint_y: None
+        TextInput:
+            size_hint_x: 20
+        Button:
+            text: "Check Answer"
+            size_hint_x: 25
+
 
 <Manager>:
     id: screen_manager
