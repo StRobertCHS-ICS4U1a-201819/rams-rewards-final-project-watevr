@@ -18,7 +18,7 @@ from RRTAA.package import Student
 class ScreenOne(Screen):
     pass
 
-class ScreenTwo(Screen):
+class ScreenTwo(Screen, TabbedPanel):
     def spinner_clicked(self, acitivies_name):
         value = RewardActivities.reward.get_point_value(acitivies_name)
         Student.point_reward.set_point_reward(value)
@@ -29,13 +29,10 @@ class ScreenTwo(Screen):
     def id_inputted(self, id):
         Student.student_list.get_student_object(id)
         print(Student.student1.point)
-        print(Student.student2.point)
 
 
 class ScreenThree(Screen):
-
-    def student_scanner(self):
-        value = "Jerry Cui"
+    pass
 
 class Manager(ScreenManager):
 
@@ -43,10 +40,13 @@ class Manager(ScreenManager):
     screen_two = ObjectProperty(None)
     screen_three = ObjectProperty(None)
 
-class ScreensApp(App):
+class Test(TabbedPanel):
+    pass
+
+class Combine2App(App):
     def build(self):
         return Manager()
 
 
 
-ScreensApp().run()
+Combine2App().run()

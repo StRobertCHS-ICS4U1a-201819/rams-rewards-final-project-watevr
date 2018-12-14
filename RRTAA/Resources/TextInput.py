@@ -22,14 +22,12 @@ class Test(TabbedPanel):
     def id_inputted(self, id):
         Student.student_list.get_student_object(id)
         print(Student.student1.point)
-        print(Student.student2.point)
 
 class TextInputApp(App):
     def build(self):
         return Test()
 
-class MyListView(BoxLayout):
-    pass
+
 
 if __name__ == '__main__':
     TextInputApp().run()

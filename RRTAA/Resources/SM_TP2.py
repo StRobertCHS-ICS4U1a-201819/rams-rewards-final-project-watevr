@@ -2,23 +2,26 @@ import kivy
 kivy.require("1.10.1")
 
 from kivy.app import App
+from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.uix.textinput import TextInput
-from kivy.uix.label import Label
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.button import Button
-from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.lang import Builder
 
 from RRTAA.package import RewardActivities
 from RRTAA.package import Student
 
+class RootWidget(TabbedPanel):
 
-class ScreenOne(Screen):
-    pass
+    manager = ObjectProperty(None)
 
-class ScreenTwo(Screen):
+    def switch_to(self, header):
+        # set the Screen manager to load  the appropriate screen
+        # linked to the tab head instead of loading content
+        self.manager.current = header.screen
+        # we have to replace the functionality of the original switch_to
+        self.current_tab.state = "normal"
+        header.state = 'down'
+        self._current_tab = header
     def spinner_clicked(self, acitivies_name):
         value = RewardActivities.reward.get_point_value(acitivies_name)
         Student.point_reward.set_point_reward(value)
@@ -29,24 +32,28 @@ class ScreenTwo(Screen):
     def id_inputted(self, id):
         Student.student_list.get_student_object(id)
         print(Student.student1.point)
-        print(Student.student2.point)
 
+class ScreenOne(Screen):
+    pass
+
+class ScreenTwo(Screen):
+    pass
 
 class ScreenThree(Screen):
-
-    def student_scanner(self):
-        value = "Jerry Cui"
+    pass
 
 class Manager(ScreenManager):
 
     screen_one = ObjectProperty(None)
     screen_two = ObjectProperty(None)
     screen_three = ObjectProperty(None)
+    screen_three = ObjectProperty(None)
 
-class ScreensApp(App):
+class Combine1App(App):
+
     def build(self):
-        return Manager()
+        return RootWidget()
 
 
-
-ScreensApp().run()
+if __name__ == '__main__':
+    Combine1App().run()

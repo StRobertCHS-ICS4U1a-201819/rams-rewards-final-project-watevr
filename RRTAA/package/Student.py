@@ -24,9 +24,25 @@ class Student_list(object):
     def get_student_object(self, id):
         id_list = id.split()
         for i in range(len(id_list)):
-            print(student_list.student_list[1])
+
             id_value = int(id_list[i])
-            student_list.student_list[id_value].add_point(point_reward.point_reward)
+            if id_value == 1:
+                student1.add_point(point_reward.point_reward)
+
+            elif id_value == 2:
+                student2.add_point(point_reward.point_reward)
+
+
+            elif id_value == 3:
+                student3.add_point(point_reward.point_reward)
+
+
+            elif id_value == 4:
+                student4.add_point(point_reward.point_reward)
+
+            else:
+                raise ValueError
+
 
 
 

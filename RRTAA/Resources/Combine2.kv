@@ -30,12 +30,30 @@
             on_press:
                 root.manager.current = "screen3"
 
+    TabbedPanelItem:
+        text: 'Activities'
 
-        Spinner:
-            text: "Reward Activities"
-            values: ["Highest Mark", "Average over 85", "Club Meeting", "Sport Team", "Activities Leader"]
-            id: spinner_id
-            on_text: root.spinner_clicked(spinner_id.text)
+        BoxLayout:
+            orientation: "vertical"
+            size: root.size
+            spacing: 20
+            padding: 20
+
+        Label:
+            text: 'Choose from a list of rewards activities '
+
+            Spinner:
+                text: "Reward Activities"
+                size_hint_y: .40
+                values: ["Highest Mark", "Average over 85", "Club Meeting", "Sport Team", "Activities Leader"]
+                id: spinner_id
+                on_text: root.spinner_clicked(spinner_id.text)
+
+
+
+
+
+
 
 <ScreenThree>:
     BoxLayout:

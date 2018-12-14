@@ -1,0 +1,32 @@
+<RootWidget>:
+    manager: manager
+    do_default_tab: False
+    # add a ScreenManager to the panel
+    ScreenManager:
+        id: manager
+        Screen:
+            id: sc1
+            name: 'screen_one'
+            Button:
+                text: 'screen one'
+        Screen
+            id: sc2
+            name: 'screen_two'
+            Button:
+                text: 'Screen Two'
+        Screen:
+            id: sc3
+            name: 'screen_three'
+            Button:
+                text: 'screen three'
+
+    TabbedPanelHeader:
+        text: sc1.name
+        # store a screen name to link the tab to a screen
+        screen: sc1.name
+    TabbedPanelHeader:
+        text: sc2.name
+        screen: sc2.name
+    TabbedPanelHeader:
+        text: sc3.name
+        screen: sc3.name
