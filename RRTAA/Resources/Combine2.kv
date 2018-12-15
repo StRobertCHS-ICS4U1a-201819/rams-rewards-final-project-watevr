@@ -1,105 +1,163 @@
-#:kivy 1.10.1
+<RootWidget>:
+    manager: manager
+    do_default_tab: False
+    # add a ScreenManager to the panel
+    ScreenManager:
+        id: manager
+        Screen:
+            id: sc1
+            name: 'screen_one'
+            Button:
+                text: 'Screen One'
+                on_press:
+                    root.manager.current = "screen_four"
+        Screen
+            id: sc2
+            name: 'screen_two'
+            Button:
+                text: 'Screen Two'
+                on_press:
+                    root.manager.current = "screen_student_list"
+        Screen:
+            id: sc3
+            name: 'screen_three'
+            Button:
+                text: 'Screen Three'
+        Screen:
+            id: sc4
+            name: 'screen_four'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
 
-<ScreenOne>:
+                Label:
+                    text: "First Step"
 
-    BoxLayout:
-        orientation: "vertical"
-        size: root.size
-        spacing: 20
-        padding: 20
+                Button:
+                    text: 'Next'
+                    on_press:
+                        root.manager.current = "screen_five"
 
-        Label:
-            text: "Welcome Back"
-        Button:
-            text: "Reward Activities Page"
-            on_press:
-                root.manager.current = "screen2"
+                Spinner:
+                    text: "Reward Activities"
+                    values: ["Highest Mark", "Average over 85", "Club Meeting", "Sport Team", "Activities Leader"]
+                    id: spinner_id
+                    on_text: root.spinner_clicked(spinner_id.text)
+        Screen:
+            id: sc5
+            name: 'screen_five'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
 
-<ScreenTwo>:
+                Label:
+                    text: 'Use your phone to scan the barcode and enter the id of student in the box below '
 
-    BoxLayout:
-        orientation: "vertical"
-        size: root.size
-        spacing: 20
-        padding: 20
+                Button:
+                    text: 'Submit'
+                    on_press: root.id_inputted(ti.text)
 
-        Label:
-            text: "Main Menu"
-        Button:
-            text: "Button 2"
-            on_press:
-                root.manager.current = "screen3"
+                TextInput:
+                    id: _a
+                    hint_text: 'hello'
+                    multiline: 'False'
+                    size: 500,400
+                    size_hint: None, None
+                    text:'Enter here'
+                    id: ti
 
-    TabbedPanelItem:
-        text: 'Activities'
+                Button:
+                    text: 'Home'
+                    on_press:
+                        root.manager.current = "screen_one"
 
-        BoxLayout:
-            orientation: "vertical"
-            size: root.size
-            spacing: 20
-            padding: 20
-
-        Label:
-            text: 'Choose from a list of rewards activities '
-
-            Spinner:
-                text: "Reward Activities"
-                size_hint_y: .40
-                values: ["Highest Mark", "Average over 85", "Club Meeting", "Sport Team", "Activities Leader"]
-                id: spinner_id
-                on_text: root.spinner_clicked(spinner_id.text)
-
-
-
-
-
+        Screen:
+            id: sc6
+            name: 'screen_student_list'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
 
 
-<ScreenThree>:
-    BoxLayout:
-        orientation: "vertical"
-        size: root.size
-        spacing: 20
-        padding: 20
+                Button:
+                    text: 'Justin, Guo'
+                    on_press:
+                        root.manager.current = "screen_Guo"
 
-        Label:
-            text: "appointed student"
-        Button:
-            text: "Use your phone to scan the barcode and enter the id of student in the box below"
-            on_press:
-                root.manager.current = "screen1"
+                Button:
+                    text: 'Evan Bai'
+                    on_press:
+                        root.manager.current = "screen_Bai"
 
-    BoxLayout:
-        height: "40dp"
-        size_hint_y: None
+                Button:
+                    text: 'Jerry Cui'
+                    on_press:
+                        root.manager.current = "screen_Cui"
 
-        TextInput:
-            size_hint_x: 20
+                Button:
+                    text: 'Waldon Zhang'
+                    on_press:
+                        root.manager.current = "screen_Zhang"
 
-        Button:
-            text: "Check Answer"
-            size_hint_x: 25
+        Screen:
+            id: sc7
+            name: 'screen_Guo'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+                Button:
+                    text: str(root.reward_history1)
+                Button:
+                    text: 'Back Page'
+                    on_press:
+                        root.manager.current = "screen_student_list"
+        Screen:
+            id: sc8
+            name: 'screen_Bai'
+            Button:
+                text: str(root.reward_history2)
+            Button:
+                text: 'Back Page'
+                on_press:
+                    root.manager.current = "screen_student_list"
+
+        Screen:
+            id: sc9
+            name: 'screen_Cui'
+            Button:
+                text: str(root.reward_history3)
+            Button:
+                text: 'Back Page'
+                on_press:
+                    root.manager.current = "screen_student_list"
+        Screen:
+            id: sc10
+            name: 'screen_Zhang'
+            Button:
+                text: str(root.reward_history4)
+            Button:
+                text: 'Back Page'
+                on_press:
+                    root.manager.current = "screen_student_list"
 
 
 
-<Manager>:
-    id: screen_manager
 
-    screen_one: screen_one
-    screen_two: screen_two
-    screen_three: screen_three
 
-    ScreenOne:
-        id: screen_one
-        name: "screen1"
-        manager: screen_manager
-
-    ScreenTwo:
-        id: screen_two
-        name: "screen2"
-        manager: screen_manager
-
-    ScreenThree:
-        id: screen_three
-        name: "screen3"
-        manager: screen_manager
+    TabbedPanelHeader:
+        text: 'Distribution'
+        screen: sc1.name
+    TabbedPanelHeader:
+        text: 'Student'
+        screen: sc2.name
+    TabbedPanelHeader:
+        text: 'Reward'
+        screen: sc3.name

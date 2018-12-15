@@ -14,8 +14,8 @@ from RRTAA.package import Student
 class Test(TabbedPanel):
     def spinner_clicked(self, acitivies_name):
         value = RewardActivities.reward.get_point_value(acitivies_name)
-        Student.point_reward.set_point_reward(value)
-        print(value, Student.point_reward.point_reward)
+        Student.reward_info.set_point_reward(value)
+        print(value, Student.reward_info.point_reward)
 
         print("Spinner Value " + acitivies_name)
 

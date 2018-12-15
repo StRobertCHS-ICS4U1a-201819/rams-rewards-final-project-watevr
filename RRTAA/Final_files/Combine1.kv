@@ -69,7 +69,7 @@
                         root.manager.current = "screen_date"
                 TextInput:
                     id: _a
-                    hint_text: 'Enter here'
+                    hint_text: 'hello'
                     multiline: 'False'
                     size: 500,400
                     size_hint: None, None
@@ -126,6 +126,7 @@
                 size: root.size
                 spacing: 20
                 padding: 20
+
                 Button:
                     text: str(root.reward_history1)
                 Button:
@@ -197,7 +198,7 @@
 
                 TextInput:
                     id: _a
-                    hint_text: 'Enter here'
+                    hint_text: 'hello'
                     multiline: 'False'
                     size: 500,400
                     size_hint: None, None
@@ -207,7 +208,7 @@
                 Button:
                     text: 'Home'
                     on_press:
-                        root.manager.current = "screen_three"
+                        root.manager.current = "screen_one"
         Screen
             id: sc12
             name: 'screen_date_list'

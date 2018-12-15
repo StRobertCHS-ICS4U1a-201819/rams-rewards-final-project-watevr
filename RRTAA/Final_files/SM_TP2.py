@@ -3,7 +3,7 @@ kivy.require("1.10.1")
 
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
-from kivy.properties import ObjectProperty
+from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 from kivy.clock import Clock
@@ -40,6 +40,8 @@ class RootWidget(TabbedPanel):
     def spinner_clicked(self, acitivies_name):
         value = RewardActivities.reward.get_point_value(acitivies_name)
 
+        print(value)
+
         Student.reward_info.set_point_reward(value)
         Student.reward_info.set_activities(acitivies_name)
 
@@ -47,11 +49,21 @@ class RootWidget(TabbedPanel):
         print(id)
         Student.student_list.get_student_object(id)
 
+        print(Student.student1.point)
+        print(Student.student2.point)
+        print(Student.student3.point)
+        print(Student.student4.point)
+
     def set_student_history(self):
         self.reward_history1 = Student.student1.reward_history_list
         self.reward_history2 = Student.student2.reward_history_list
         self.reward_history3 = Student.student3.reward_history_list
         self.reward_history4 = Student.student4.reward_history_list
+
+        print(self.reward_history1)
+        print(self.reward_history2)
+        print(self.reward_history3)
+        print(self.reward_history4)
 
     def add_date(self, val_date):
         Student.reward_info.set_date_list(val_date)

@@ -54,11 +54,10 @@ class Student_list(object):
 
 class Reward_info(object):
     def __init__(self):
-        self.point_reward = 0
         self.activities = ""
 
     def set_date_list(self, date):
-
+        print("set_date_list")
         if reward_info.activities == "Highest Mark":
             activities1.date_list.append(date)
 
