@@ -10,7 +10,5 @@ class Reward_list(object):
             if activities_name == self.reward_list[i]:
                 return self.point_list[i]
 
-    def set_date(self, val_date):
-        self.date = val_date
 
 reward = Reward_list(["Highest Mark", "Average over 85", "Club Meeting", "Sport Team", "Activities Leader"], [8, 4, 6, 7, 5])

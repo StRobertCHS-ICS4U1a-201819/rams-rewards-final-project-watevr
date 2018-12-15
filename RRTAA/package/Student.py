@@ -52,18 +52,51 @@ class Student_list(object):
                 raise ValueError
 
 
-
-
 class Reward_info(object):
     def __init__(self):
         self.point_reward = 0
         self.activities = ""
+
+    def set_date_list(self, date):
+
+        if reward_info.activities == "Highest Mark":
+            activities1.date_list.append(date)
+
+        elif reward_info.activities == "Average over 85":
+            activities2.date_list.append(date)
+
+        elif reward_info.activities == "Club Meeting":
+            activities3.date_list.append(date)
+
+        elif reward_info.activities == "Sport Team":
+            activities4.date_list.append(date)
+
+        elif reward_info.activities == "Activities Leader":
+            activities5.date_list.append(date)
+
+        else:
+            raise ValueError
 
     def set_point_reward(self, value):
         self.point_reward = value
 
     def set_activities(self, activities):
         self.activities = activities
+
+class Activities_list(object):
+    def __init__(self):
+        self.activities_list = []
+        self.date_list = []
+
+    def add_activities_list(self, value):
+        self.activities_list.append(value)
+
+
+    def get_value_date(self, activities_name):
+        for i in range(len(self.activities_list)):
+            if activities_name == self.activities_list[i]:
+                return self.date_list[i]
+
 
 student1 = Student("Justin", "Guo", "00001", 0, [])
 student2 = Student("Evan", "Bai","00002", 0, [])
@@ -73,5 +106,13 @@ student4 = Student("Waldon", "Zhang", "00004", 0, [])
 student_list = Student_list([student1, student2, student3, student4])
 
 reward_info = Reward_info()
+
+activities1 = Activities_list()
+activities2 = Activities_list()
+activities3 = Activities_list()
+activities4 = Activities_list()
+activities5 = Activities_list()
+
+
 
 
