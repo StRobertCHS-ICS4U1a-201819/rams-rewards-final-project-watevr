@@ -1,10 +1,11 @@
 import Students
 import Teachers
+import Person
 
 student_file = open('Students.txt', 'r+')
 teacher_file = open('Teachers.txt', 'r+')
 studentList = student_file.readlines()
-teacherList = teacher_list.readlines()
+teacherList = teacher_file.readlines()
 student_newList = []
 teacher_newList = []
 
@@ -14,10 +15,10 @@ for lst in studentList:
 for lst in teacherList:
 	teacher_newList.append(lst.split(","))
 
-class Classroom(Student):
+class Classroom(Person):
 	"""docstring for Classroom"""
 	def __init__(self):
-		super().__init__()      #get class "student"
+		super().__init__(self, fist_name, last_name, ID, hoomRoom, points = 0)   
 
 		self.student_list = []
 		self.teacher_list = []

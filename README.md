@@ -19,9 +19,10 @@ This mobile app will be used by teacher and administrators to distribute rewards
 ## RR Web Administration Console User Stories
 Website for Rams Rewards administrators.  RR Admins will be able to:
 * Define the list of rewards activities along with their point values.
-* Manage list of student accounts (add accounts, remove accounts, edit info)  /debug
-* View history of rewards activity.            /前端
-* View charts of rewards activity (by date, by activity)   /前端
+* Manage list of student accounts (add accounts, remove accounts, edit info)  
+* View history of rewards activity.            
+* View charts of rewards activity (by date, by activity)  
+
 
 
 
