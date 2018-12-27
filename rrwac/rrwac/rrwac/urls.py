@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from reward import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home),
+    path('logIn/', views.logIn),
+    path('signUp/', views.signUp),
+    path('profile/', views.profile),
+    path('history/', views.history),
+    path('chart/', views.chart),
 ]
