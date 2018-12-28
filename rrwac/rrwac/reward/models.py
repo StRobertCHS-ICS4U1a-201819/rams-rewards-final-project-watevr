@@ -1,6 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinValueValidator, MaxValueValidator, RegexValidator
 
 
 class Reward(models.Model):
@@ -17,15 +17,8 @@ class Reward(models.Model):
         return self.reward_name
 
 
-class Student(AbstractBaseUser):
-    identifier = models.CharField(max_length=30, unique=True)
-    USERNAME_FIELD = 'identifier'
-    student_email = models.EmailField(max_length=30)
-    student_number = models.IntegerField(max_length=7)
+class Student(AbstractUser):
     qrCode = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
-    profile_picture = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
-    grade = models.IntegerField(validators=[MinValueValidator(9), MaxValueValidator(12)])
-    home_room = models.CharField(max_length=3)
     student_points = models.IntegerField('points', default=0)
     rank = models.IntegerField('rank', default=0)
     student_description = models.TextField(max_length=300)
@@ -34,4 +27,4 @@ class Student(AbstractBaseUser):
         db_table = 'student'
 
     def __str__(self):
-        return self.id
+        return self.username

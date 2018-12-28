@@ -20,8 +20,8 @@ from reward import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
-    path('logIn/', views.logIn),
-    path('signUp/', views.signUp),
+    path('login/', views.login),
+    path('signup/', views.SignUp),
     path('profile/', views.profile),
     path('history/', views.history),
     path('chart/', views.chart),
