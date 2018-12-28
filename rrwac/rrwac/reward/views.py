@@ -1,32 +1,33 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import qrcode
 
 
 def home(request):
-
-    return render(request, 'home.html', {})
+    idk = qrcode.make('1125029')
+    return render(request, 'home.html', locals())
 
 
 def logIn(request):
 
-    return render(request, 'logIn.html', {})
+    return render(request, 'logIn.html', locals())
 
 
 def signUp(request):
 
-    return render(request, 'signUp.html', {})
+    return render(request, 'signUp.html', locals())
 
 
 def profile(request):
 
-    return render(request, 'profile.html', {})
+    return render(request, 'profile.html', locals())
 
 
 def history(request):
 
-    return render(request, 'history.html', {})
+    return render(request, 'history.html', locals())
 
 
 def chart(request):
 
-    return render(request, 'chart.html', {})
+    return render(request, 'chart.html', locals())
