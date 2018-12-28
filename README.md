@@ -1,3 +1,6 @@
+# rams-rewards-final-project-watevr
+rams-rewards-final-project-watevr created by GitHub Classroom
+
 # Product Catalog
 
 ## Ram Rewards Student App (RRSA) User Stories

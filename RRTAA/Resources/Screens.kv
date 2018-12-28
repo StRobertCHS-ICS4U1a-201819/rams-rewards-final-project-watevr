@@ -1,0 +1,87 @@
+#:kivy 1.10.1
+
+<ScreenOne>:
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.size
+        spacing: 20
+        padding: 20
+
+        Label:
+            text: "Welcome Back"
+        Button:
+            text: "Reward Activities Page"
+            on_press:
+                root.manager.current = "screen2"
+
+<ScreenTwo>:
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.size
+        spacing: 20
+        padding: 20
+
+        Label:
+            text: "Main Menu"
+        Button:
+            text: "Button 2"
+            on_press:
+                root.manager.current = "screen3"
+
+
+        Spinner:
+            text: "Reward Activities"
+            values: ["Highest Mark", "Average over 85", "Club Meeting", "Sport Team", "Activities Leader"]
+            id: spinner_id
+            on_text: root.spinner_clicked(spinner_id.text)
+
+<ScreenThree>:
+    BoxLayout:
+        orientation: "vertical"
+        size: root.size
+        spacing: 20
+        padding: 20
+
+        Label:
+            text: "appointed student"
+        Button:
+            text: "Use your phone to scan the barcode and enter the id of student in the box below"
+            on_press:
+                root.manager.current = "screen1"
+
+    BoxLayout:
+        height: "40dp"
+        size_hint_y: None
+
+        TextInput:
+            size_hint_x: 20
+
+        Button:
+            text: "Check Answer"
+            size_hint_x: 25
+
+
+
+<Manager>:
+    id: screen_manager
+
+    screen_one: screen_one
+    screen_two: screen_two
+    screen_three: screen_three
+
+    ScreenOne:
+        id: screen_one
+        name: "screen1"
+        manager: screen_manager
+
+    ScreenTwo:
+        id: screen_two
+        name: "screen2"
+        manager: screen_manager
+
+    ScreenThree:
+        id: screen_three
+        name: "screen3"
+        manager: screen_manager

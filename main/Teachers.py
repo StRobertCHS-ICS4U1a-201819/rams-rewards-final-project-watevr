@@ -7,6 +7,3 @@ class Teacher(object):
 		self.teacher_password = password
 
 
-
-	
-		

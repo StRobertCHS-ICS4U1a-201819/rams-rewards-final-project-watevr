@@ -1,6 +1,6 @@
 class Person(object):
 	"""docstring for Person"""
-	def __init__(self, fist_name, last_name, ID, hoomRoom, points = 0):
+	def __init__(self, first_name, last_name, ID, hoomRoom, points = 0):
 		self.first_name = first_name
 		self.last_name = last_name
 		self.person_id = ID
@@ -17,7 +17,7 @@ class Person(object):
 				self.person_homeRoom = homeRoom
 				self.person_points = int(points)
 
-	def edit_person_firstname(self, person, first_name, id):
+	def edit_person_firstname(self, person, first_name, person_id):
 		for ID in self.person_newList:
 			if ID.person_id == person_id:
 				self.person_firstName = first_name

@@ -1,11 +1,15 @@
 class Student(object):
 	"""docstring for Student"""
-	def __init__(self, first_name, last_name, ID, homeRoom, points):         #name = str; id = int; homeRoom = str; points = int                          
-		self.student_firstName = first_name
-		self.student_lastName = last_name
-		self.student_id = ID
-		self.student_homeRoom = homeRoom
-		self.student_points = int(points)
+
+    def __init__(self, first_name, last_name, ID, homeRoom, points):         #name = str; id = int; homeRoom = str; points = int
+        self.student_firstName = first_name
+        self.student_lastName = last_name
+        self.student_id = ID
+        self.student_homeRoom = homeRoom
+        self.student_points = int(points)
+
+    def get_Name(self):
+        return self.student_name
 
 	def edit_person_info(self, first_name, last_name, ID, homeRoom, points):
 		student_ID = input("Please input ID: ")

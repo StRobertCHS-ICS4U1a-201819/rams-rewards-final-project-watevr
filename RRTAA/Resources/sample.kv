@@ -10,6 +10,7 @@
     Button:
         text: "Highest Mark"
         on_press: root.dismiss()
+
     Button:
         text: "Average over 85"
         on_press: root.dismiss()
@@ -35,7 +36,7 @@ SampBoxLayout:
         size_hint_x: .22
 
         CustLabel:
-            text: "Are you over 18"
+            text: "Submit"
             size_hint_x: .80
         CheckBox:
             on_active: root.checkbox_18_clicked(self,self.active)

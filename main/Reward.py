@@ -1,11 +1,10 @@
 import Classroom
-import Students
-import Teachers
+import Student
 
 activity = open("RewardActivity.txt", "r+")
 activities = activity.readlines()
 activity_list = []
-log_in = false                                      #the state of login
+
 													#add acitvities to list from the txt file
 for lst in activity:							
 	activity_list.append(lst.spilt(","))

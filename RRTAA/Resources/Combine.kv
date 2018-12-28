@@ -1,0 +1,97 @@
+<RootWidget>:
+    manager: manager
+    do_default_tab: False
+    # add a ScreenManager to the panel
+    ScreenManager:
+        id: manager
+        Screen:
+            id: sc1
+            name: 'screen_one'
+            Button:
+                size_hint: .15, .20
+                text: "Screen One"
+                on_press:
+                    root.manager.current = "screen2"
+        Screen
+            id: sc2
+            name: 'screen_two'
+            Button:
+                size_hint: .25, .15
+                text: "Screen Two"
+                on_press:
+                    root.manager.current = "screen2"
+        Screen:
+            id: sc3
+            name: 'screen_three'
+            Button:
+                text: 'screen three'
+    Test:
+        tab_size_hint_x: 1.5
+
+        TabbedPanelItem:
+            text: 'Activities'
+
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+
+                Label:
+                    text: 'Choose from a list of rewards activities '
+
+                Spinner:
+                    text: "Reward Activities"
+                    size_hint_y: .40
+                    values: ["Highest Mark", "Average over 85", "Club Meeting", "Sport Team", "Activities Leader"]
+                    id: spinner_id
+                    on_text: root.spinner_clicked(spinner_id.text)
+
+
+        TabbedPanelItem:
+            text: 'Students'
+
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+
+                Label:
+                    text: 'Use your phone to scan the barcode and enter the id of student in the box below '
+
+                TextInput:
+                    id: _a
+                    hint_text: 'hello'
+                    multiline: 'False'
+                    size: 500,450
+                    size_hint: None, None
+                    text:'Enter here'
+                    id: ti
+
+                Button:
+                    text: 'Submit'
+                    on_press: root.id_inputted(ti.text)
+
+
+<Manager>:
+    id: screen_manager
+
+    screen_one: screen_one
+    screen_two: screen_two
+    screen_three: screen_three
+
+    ScreenOne:
+        id: screen_one
+        name: "screen1"
+        manager: screen_manager
+
+    ScreenTwo:
+        id: screen_two
+        name: "screen2"
+        manager: screen_manager
+
+    ScreenThree:
+        id: screen_three
+        name: "screen3"
+        manager: screen_manager

@@ -1,0 +1,27 @@
+#: import CheckBox kivy.uix.checkbox
+
+<CustLabel@Label>
+    color: 0,0,0,1
+
+
+# list of reward activities
+SampBoxLayout:
+
+<SampBoxLayout>:
+    orientation: "vertical"
+    padding: 10
+    spacing: 10
+
+    BoxLayout:
+        orientation: "horizontal"
+
+
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: .25, .15
+
+            Spinner:
+                text: "Reward Activities"
+                values: ["Highest Mark", "Average over 85", "Club Meeting", "Sport Team", "Activities Leader"]
+                id: spinner_id
+                on_text: root.spinner_clicked(spinner_id.text)
