@@ -18,11 +18,11 @@ from django.urls import path
 from reward import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.home),
-    path('login/', views.login),
-    path('signup/', views.SignUp),
-    path('profile/', views.profile),
-    path('history/', views.history),
-    path('chart/', views.chart),
+    path('admin/', admin.site.urls, name='admin'),
+    path('', views.home, name='home'),
+    path('login/', views.login, name='login'),
+    path('signup/', views.SignUp, name='signup'),
+    path('profile/', views.profile, name='profile'),
+    path('history/', views.history, name='history'),
+    path('chart/', views.chart, name='chart'),
 ]

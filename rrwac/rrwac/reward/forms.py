@@ -9,10 +9,6 @@ import re
 
 
 def lowercase_email(email):
-    """
-    Normalize the address by lowercasing the domain part of the email
-    address.
-    """
     email = email or ''
     try:
         email_name, domain_part = email.strip().rsplit('@', 1)
@@ -67,3 +63,34 @@ class SignupForm (forms.ModelForm):
         if not(password == confirm_password):
             raise forms.ValidationError("Password and Confirm Password are not SAME")
         return confirm_password
+
+
+class LoginForm (forms.Form):
+
+    username = forms.CharField(
+        label='username', required=False)
+    password = forms.CharField(
+        label='Password', required=False, widget=forms.PasswordInput())
+
+    def clean(self):
+        cleaned_data = super(LoginForm, self).clean()
+        UserModel = get_user_model()
+        username = cleaned_data.get("username")
+        username = username.strip()
+        password = cleaned_data.get("password")
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            if user.is_active:
+                return cleaned_data
+            else:
+                raise forms.ValidationError("This Account is not Actived")
+
+        else:
+            raise forms.ValidationError("This Account is not registered")
+
+        if not username or not password:
+            raise forms.ValidationError("username/Password cannot be empty")
+
+        else:
+            raise forms.ValidationError("username and Password does not Match")

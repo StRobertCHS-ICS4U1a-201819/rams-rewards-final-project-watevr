@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import RequestContext
-import datetime
 from django.contrib.auth import authenticate, login as auth_login, logout
-from reward.forms import SignupForm
+from reward.forms import SignupForm, LoginForm
 from django.contrib.auth import get_user_model
+from reward.models import Reward
 import qrcode
+import datetime
 
 
 def home(request):
@@ -15,6 +16,17 @@ def home(request):
 
 
 def login(request):
+    path = request.get_full_path()
+    if request.method == 'POST':
+        form = LoginForm(data=request.POST, auto_id="%s")
+        if form.is_valid():
+            data = form.clean()
+            user = authenticate(username=data['username'].strip(), password=data['password'])
+            auth_login(request, user)
+            return redirect("home")
+
+    else:
+        form = LoginForm(auto_id="%s")
 
     return render(request, 'login.html', locals())
 
@@ -31,12 +43,17 @@ def SignUp(request):
             password = form.cleaned_data['password']
             user = UserModel.objects.create_user(username=username, email=email, id=id, password=password)
             user.save()
-            auth_user = authenticate(email=email, password=password)
+            auth_user = authenticate(username=username, password=password)
             auth_login(request, auth_user)
             return redirect("home")
     else:
         form = SignupForm(auto_id="%s")
     return render(request, 'signup.html', locals())
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
 
 
 def profile(request):

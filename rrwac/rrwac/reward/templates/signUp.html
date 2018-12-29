@@ -49,15 +49,15 @@
                <form class="form-horizontal" id = "form" action="{{path}}" method="post">
                 {% csrf_token %}
 
-                <div class="form-group {%if form.username.errors%} has-error {%endif%}">
-                    <label for="username" class="col-sm-4 control-label">ID* :</label>
+                <div class="form-group {%if form.id.errors%} has-error {%endif%}">
+                    <label for="id" class="col-sm-4 control-label">Student Number* :</label>
                     <div class="col-sm-5">
                     {{form.id}}
                     </div>
                     {%if form.id.errors%}
                   <div class="col-sm-5 col-sm-offset-4 margint10">
                   <span class="color-background2 ">
-                  {% for error in form.username.errors %}
+                  {% for error in form.id.errors %}
                     {{ error|escape }}
                   {% endfor %}
                   </span>
