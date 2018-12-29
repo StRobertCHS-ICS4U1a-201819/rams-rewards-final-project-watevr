@@ -11,24 +11,16 @@
 						<span class="menu"><img src="images/nav.png" alt=""/> </span>
 							<ul>
 								<li class="active"><a href="/"><span>Home</span></a></li>
+								<li><a href="/activities"><span>Add Activities</span></a></li>
 								<li><a href="/profile"><span>Profile</span></a></li>
 								<li><a href="/history"><span>History</span></a></li>
 								<li><a href="/chart"><span>Chart</span></a></li>
-								<li><a href="/activities"><span>Activities</span></a></li>
 								<li><a href="/login"><span>Log In</span></a></li>
 								<li><a href="/signup"><span>Sign Up</span></a></li>
 								<li><a href="/logout"><span>Log Out</span></a></li>
-								{% if  request.user.id %}
-								<li><span>Hello: {{user.username}}</span></a></li>
-								{%  endif %}
+
 							</ul>
 
-						</div>
-						<div class="social-icons">
-							<a href="#"><i class="icon1"></i></a>
-							<a href="#"><i class="icon2"></i></a>
-							<a href="#"><i class="icon3"></i></a>
-						</div>
 						<!-- script for menu -->
 
 							 <script>
@@ -48,19 +40,26 @@
 				</div>
 				<div class="fluid_container">
 					<div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
-						<div data-thumb="images/thumbs/slider1.jpg" data-src="images/slider1.jpg"></div>
-						<div data-thumb="images/thumbs/slider2.jpg" data-src="images/slider2.jpg"></div>
-						<div data-thumb="images/thumbs/slider3.jpg" data-src="images/slider5.jpg"></div>
-						<div data-thumb="images/thumbs/slider4.jpg" data-src="images/slider4.jpg"></div>
+						<div data-thumb="{% static "images/thumbs/slider1.jpg"%}" data-src="{% static "images/slider1.jpg"%}"></div>
+						<div data-thumb="{% static "images/thumbs/slider2.jpg"%}" data-src="{% static "images/slider2.jpg"%}"></div>
+						<div data-thumb="{% static "images/thumbs/slider3.jpg"%}" data-src="{% static "images/slider5.jpg"%}"></div>
+						<div data-thumb="{% static "images/thumbs/slider4.jpg"%}" data-src="{% static "images/slider4.jpg"%}"></div>
 					</div>
-					<div class="clearfix"></div>
-				</div>
 
 				<div class="interior-grids">
 				</div>
 
+
 				<!--start-footer-section-->
 				<div class="footer-section">
+					<div class="footer-top">
+						<div>
+							<h2>Hello</h2>
+							{% if  request.user.id %}
+							<h2>{{user.username}}</h2>
+							{%  endif %}
+						</div>
+					</div>
 				</div>
 				<!--end-footer-section-->
 			</div>
