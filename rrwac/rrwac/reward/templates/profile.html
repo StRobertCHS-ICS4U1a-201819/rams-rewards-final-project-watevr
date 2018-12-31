@@ -1,19 +1,147 @@
-<html>
-    <div class='container'>
-        <h1>Profile</h1>
-        <p>Username: {{ user.username }}</p>
-        <p>Student Number: {{ user.id }}</p>
-        <p>Email: {{ user.email }}</p>
-        <p>QrCode: {{ user.qrcode }}</p>
-        <img id='barcode'
-            src="https://api.qrserver.com/v1/create-qr-code/?data={{user.id}}&amp;size=1000x1000"
-            alt=""
-            title="{{ user.username }}"
-            width="100"
-            height="100" />
-        <p>Points: {{ user.student_points }}</p>
-        <p>Rank: {{ user.rank }}</p>
-        <p>Discribtion: {{ user.student_discribtion }}</p>
-    </div>
+{% extends "base.html" %}
+{% load  staticfiles %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="main-header">
+            <div class="inner-side">
+                <div class="header">
+                    <div class="head-top">
+                        <div class="top-menu">
+                        <span class="menu"><img src="images/nav.png" alt=""/> </span>
+                            <ul>
+                                <li class="active"><a href="/"><span>Home</span></a></li>
+                                <li><a href="/activities"><span>Add Activities</span></a></li>
+                                <li class="active"><a href="/profile"><span>Profile</span></a></li>
+                                <li><a href="/history"><span>History</span></a></li>
+                                <li><a href="/chart"><span>Chart</span></a></li>
+                                <li><a href="/login"><span>Log In</span></a></li>
+                                <li><a href="/signup"><span>Sign Up</span></a></li>
+                                <li><a href="/logout"><span>Log Out</span></a></li>
+                            </ul>
+                        </div>
+                            <!-- script for menu -->
 
+                                     <script>
+                                     $("span.menu").click(function(){
+                                     $(".top-menu ul").slideToggle("slow" , function(){
+                                     });
+                                     });
+                                     </script>
+                                <!-- //script for menu -->
+
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+                <div class="header-banner">
+            <h2>Student Profile</h2>
+            </div>
+
+                    <div class="about-section">
+
+                        <div class="about-grids">
+                        <div >
+               <form class="form-horizontal" id = "form" action="{{path}}" method="post">
+                {% csrf_token %}
+
+                <div>
+                    <label for="student_discribtion" class="col-sm-4 control-label">Qr Code:</label>
+                    <div class="col-sm-5">
+                        <img id='barcode'
+                            src="https://api.qrserver.com/v1/create-qr-code/?data={{ user.id }}&amp;size=100x100"
+                            alt=""
+                            title="HELLO"
+                            width="50"
+                            height="50" />
+                    </div>
+                    <div class="col-sm-5 col-sm-offset-4 margint10">
+                    </div>
+                </div>
+                <div>
+                    <label for="username" class="col-sm-4 control-label">Name:</label>
+                    <div class="col-sm-5">
+                        {{ user.username }}
+                    </div>
+                    <div class="col-sm-5 col-sm-offset-4 margint10">
+                    </div>
+                </div>
+                <div>
+                    <label for="id" class="col-sm-4 control-label">Student Number:</label>
+                    <div class="col-sm-5">
+                        {{ user.id }}
+                    </div>
+                    <div class="col-sm-5 col-sm-offset-4 margint10">
+                    </div>
+                </div>
+                <div>
+                    <label for="email" class="col-sm-4 control-label">Email Adress:</label>
+                    <div class="col-sm-5">
+                        {{ user.email }}
+                    </div>
+                    <div class="col-sm-5 col-sm-offset-4 margint10">
+                    </div>
+                </div>
+                <div>
+                    <label for="student_points" class="col-sm-4 control-label">Points:</label>
+                    <div class="col-sm-5">
+                        {{ user.student_points }}
+                    </div>
+                    <div class="col-sm-5 col-sm-offset-4 margint10">
+                    </div>
+                </div>
+                <div>
+                    <label for="rank" class="col-sm-4 control-label">Rank:</label>
+                    <div class="col-sm-5">
+                        {{ user.rank }}
+                    </div>
+                    <div class="col-sm-5 col-sm-offset-4 margint10">
+                    </div>
+                </div>
+                <div>
+                    <label for="student_discribtion" class="col-sm-4 control-label">Discribtion:</label>
+                    <div class="col-sm-5">
+                        {{ user.student_discribtion }}
+                    </div>
+                    <div class="col-sm-5 col-sm-offset-4 margint10">
+                    </div>
+                </div>
+
+                <div class="form-group margint30">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" formaction="/" class="btn btn-default">edit profile</button>
+                  </div>
+                </div>
+
+                <div class="form-group margint30">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" formaction="/" class="btn btn-default">delete account</button>
+                  </div>
+                </div>
+
+
+
+
+
+
+               </form>
+           </div>
+
+
+                    </div>
+                    </div>
+
+
+
+
+
+                <!--start-footer-section-->
+        <div class="footer-section">
+        </div>
+    <!--end-footer-section-->
+            </div>
+        </div>
+    </div>
+ </body>
 </html>
+{% endblock %}
