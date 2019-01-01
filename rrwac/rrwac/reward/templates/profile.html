@@ -45,6 +45,7 @@
                <form class="form-horizontal" id = "form" action="{{path}}" method="post">
                 {% csrf_token %}
 
+                {% if  request.user.id %}
                 <div>
                     <label for="student_discribtion" class="col-sm-4 control-label">Qr Code:</label>
                     <div class="col-sm-5">
@@ -109,16 +110,20 @@
 
                 <div class="form-group margint30">
                   <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" formaction="/" class="btn btn-default">edit profile</button>
+                    <button type="submit" formaction="/edit_profile/" class="btn btn-default">edit profile</button>
                   </div>
                 </div>
 
                 <div class="form-group margint30">
                   <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" formaction="/" class="btn btn-default">delete account</button>
+                    <button type="submit" formaction="/delete_account/" class="btn btn-default">delete account</button>
                   </div>
                 </div>
-
+                {% else %}
+                <div class="col-sm-4 col-sm-offset-4 margint10">
+                    <span>You have not logged in yet</span>
+                </div>
+                {%  endif %}
 
 
 

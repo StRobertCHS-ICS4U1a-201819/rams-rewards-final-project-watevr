@@ -5,10 +5,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator, RegexVa
 
 class Reward(models.Model):
     reward_name = models.CharField('Activity Name', max_length=30)
-    reward_object = models.CharField('The one who gets the points', max_length=30)
     date = models.DateField('Activity Date', auto_now_add=True)
-    description = models.TextField()
-    points = models.IntegerField()
+    description = models.TextField(max_length=300, default="You don't have any description yet")
+    points = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'reward'
@@ -18,10 +17,9 @@ class Reward(models.Model):
 
 
 class Student(AbstractUser):
-    qrCode = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     student_points = models.IntegerField('points', default=0)
     rank = models.IntegerField('rank', default=0)
-    student_description = models.TextField(max_length=300)
+    student_description = models.TextField(max_length=300, default="You don't have any description yet")
 
     class Meta:
         db_table = 'student'

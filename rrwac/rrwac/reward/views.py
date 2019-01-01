@@ -4,9 +4,10 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login as auth_login, logout
 from reward.forms import SignupForm, LoginForm
 from django.contrib.auth import get_user_model
-from reward.models import Reward
+from reward.models import Reward, Student
 import qrcode
 import datetime
+import time
 
 
 def home(request):
@@ -59,6 +60,11 @@ def logout_view(request):
 def profile(request):
 
     return render(request, 'profile.html', locals())
+
+
+def edit_profile(request):
+
+    return render(request, 'edit_profile.html', locals())
 
 
 def history(request):
