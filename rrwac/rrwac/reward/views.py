@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login as auth_login, logout
+from django.contrib.auth.forms import PasswordChangeForm
 from reward.forms import SignupForm, LoginForm
 from django.contrib.auth import get_user_model
 from reward.models import Reward, Student
@@ -62,16 +63,26 @@ def profile(request):
     return render(request, 'profile.html', locals())
 
 
-def edit_profile(request):
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.POST, user=request.user)
 
-    return render(request, 'edit_profile.html', locals())
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    else:
+        form = PasswordChangeForm(user=request.user)
+
+        args = {'form': form}
+        return render(request, 'change_password.html', args)
 
 
 def history(request):
-
-    return render(request, 'history.html', locals())
+    history = {'rewards': Reward.objects.filter(reward_object__username=request.user)}
+    return render(request, 'history.html', history)
 
 
 def chart(request):
-
-    return render(request, 'chart.html', locals())
+    chart = {'rewards': Reward.objects.all()}
+    return render(request, 'chart.html', chart)

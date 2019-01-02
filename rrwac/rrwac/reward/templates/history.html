@@ -1,1 +1,116 @@
-<html><h1>History</h1></html>
+{% extends "base.html" %}
+{% load  staticfiles %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="main-header">
+            <div class="inner-side">
+                <div class="header">
+                    <div class="head-top">
+                        <div class="top-menu">
+                        <span class="menu"><img src="images/nav.png" alt=""/> </span>
+                            <ul>
+                                <li class="active"><a href="/"><span>Home</span></a></li>
+                                <li><a href="/profile"><span>Profile</span></a></li>
+                                <li class="active"><a href="/history"><span>History</span></a></li>
+                                <li><a href="/chart"><span>Chart</span></a></li>
+                                <li><a href="/login"><span>Log In</span></a></li>
+                                <li><a href="/signup"><span>Sign Up</span></a></li>
+                                <li><a href="/logout"><span>Log Out</span></a></li>
+                                {% if  request.user.id %}
+                                    <img id='barcode'
+                                        src="https://api.qrserver.com/v1/create-qr-code/?data={{ user.id }}&amp;size=100x100"
+                                        alt=""
+                                        title="Qr Code"
+                                        width="80"
+                                        height="80" />
+                                {% else %}
+                                    <img id='barcode'
+                                        src="{% static "images/blank.png"%}"
+                                        alt=""
+                                        title="Qr Code"
+                                        width="80"
+                                        height="80" />
+                                {% endif %}
+                            </ul>
+                        </div>
+                            <!-- script for menu -->
+
+                                     <script>
+                                     $("span.menu").click(function(){
+                                     $(".top-menu ul").slideToggle("slow" , function(){
+                                     });
+                                     });
+                                     </script>
+                                <!-- //script for menu -->
+
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+                <div class="header-banner">
+            <h2>History</h2>
+            </div>
+
+                    <div class="about-section">
+
+                        <div class="about-grids">
+                        <div >
+               <form class="form-horizontal" id = "form" action="{{path}}" method="post">
+                {% csrf_token %}
+
+                <table class="table table_striped">
+                    <caption>History Table</caption>
+                    <thead>
+                        <tr>
+                            <th>Reward Name</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reward in rewards %}
+                            <tr>
+                                <td>{{ reward.reward_name }}</td>
+                                <td>{{ reward.date }}</td>
+                                <td>{{ reward.description }}</td>
+                                <td>{{ reward.points }}</td>
+                            </tr>
+                        {% endfor %}
+
+
+
+
+               </form>
+           </div>
+
+
+                    </div>
+                    </div>
+
+
+
+
+
+                <!--start-footer-section-->
+        <div class="footer-section">
+        </div>
+    <!--end-footer-section-->
+            </div>
+        </div>
+    </div>
+ </body>
+</html>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
