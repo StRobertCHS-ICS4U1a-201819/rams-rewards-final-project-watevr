@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.forms import PasswordChangeForm
-from reward.forms import SignupForm, LoginForm
+from reward.forms import *
 from django.contrib.auth import get_user_model
 from reward.models import Reward, Student
 import qrcode
@@ -53,6 +53,30 @@ def SignUp(request):
     return render(request, 'signup.html', locals())
 
 
+def change_password(request):
+    path = request.get_full_path()
+    if request.method == 'POST':
+        form = ChangepwdForm(data=request.POST, auto_id="%s")
+        if form.is_valid():
+            username = request.user.username
+            oldpassword = request.POST.get('oldpassword', '')
+            user = authenticate(username=username, password=oldpassword)
+            if user is not None and user.is_active:
+                newpassword = request.POST.get('newpassword1', '')
+                user.set_password(newpassword)
+                user.save()
+                auth_user = authenticate(username=username, password=newpassword)
+                auth_login(request, auth_user)
+                return redirect("home")
+            else:
+                return render(request, 'change_password.html', {'form': form, 'oldpassword_is_wrong': True})
+        else:
+            return render(request, 'change_password.html', {'form': form})
+    else:
+        form = ChangepwdForm(auto_id="%s")
+    return render(request, 'change_password.html', locals())
+
+
 def logout_view(request):
     logout(request)
     return redirect('home')
@@ -63,26 +87,16 @@ def profile(request):
     return render(request, 'profile.html', locals())
 
 
-def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.POST, user=request.user)
-
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-
-    else:
-        form = PasswordChangeForm(user=request.user)
-
-        args = {'form': form}
-        return render(request, 'change_password.html', args)
-
-
 def history(request):
     history = {'rewards': Reward.objects.filter(reward_object__username=request.user)}
     return render(request, 'history.html', history)
 
 
-def chart(request):
-    chart = {'rewards': Reward.objects.all()}
-    return render(request, 'chart.html', chart)
+def chart_date(request):
+    chart = {'rewards': Reward.objects.order_by('date')}
+    return render(request, 'chart_date.html', chart)
+
+
+def chart_activity(request):
+    chart = {'rewards': Reward.objects.order_by('reward_name')}
+    return render(request, 'chart_activity.html', chart)
