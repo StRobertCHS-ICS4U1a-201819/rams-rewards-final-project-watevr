@@ -12,15 +12,17 @@ import time
 
 
 def home(request):
-    rls = Reward.objects.filter(reward_object__username=request.user)
-    points = 0
-    for pls in rls.values('points'):
-        for point in pls:
-            points += pls[point]
-    request.user.student_points = points
-    request.user.save()
-    time = datetime.datetime.now()
-
+    if request.user.is_authenticated:
+        rls = Reward.objects.filter(reward_object__username=request.user)
+        points = 0
+        for pls in rls.values('points'):
+            for point in pls:
+                points += pls[point]
+        request.user.student_points = points
+        request.user.save()
+        time = datetime.datetime.now()
+    else:
+        pass
     return render(request, 'index.html', locals())
 
 
