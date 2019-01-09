@@ -9,10 +9,6 @@ import re
 
 
 def lowercase_email(email):
-    """
-    Normalize the address by lowercasing the domain part of the email
-    address.
-    """
     email = email or ''
     try:
         email_name, domain_part = email.strip().rsplit('@', 1)
@@ -26,15 +22,43 @@ def lowercase_email(email):
 class SignupForm (forms.ModelForm):
 
     username = forms.CharField(
-        label='Student Name', required=True, error_messages={'required': 'Please Input Your Full Name', 'max_length': 'Max Input is 30 Digits', 'min_length': 'Min Input is 3 Digits'}, max_length=30, min_length=3, widget=forms.TextInput(attrs={'placeholder': '3~30 Characters'}))
+        label='Student Name',
+        required=True,
+        error_messages={'required': 'Please Input Your Full Name', 'max_length': 'Max Input is 30 Digits', 'min_length': 'Min Input is 3 Digits'},
+        max_length=30,
+        min_length=3,
+        widget=forms.TextInput(attrs={'placeholder': '3~30 Characters'})
+    )
     email = forms.EmailField(
-        error_messages={'required': 'Please Input Your Email', 'invalid': 'Email Format is not Right'}, label='Email', required=True, widget=forms.EmailInput(attrs={'placeholder': 'Your Email'}))
+        error_messages={'required': 'Please Input Your Email', 'invalid': 'Email Format is not Right'},
+        label='Email',
+        required=True,
+        widget=forms.EmailInput(attrs={'placeholder': 'Your Email'})
+    )
     id = forms.CharField(
-        label='Student Number', required=True, error_messages={'required': 'Your Student Number', 'max_length': 'Student Number is a 7 Digits Number', 'min_length': 'Student Number is a 7 Digits Number符'}, max_length=7, min_length=7, validators=[RegexValidator(r'^\d{1,10}$')], widget=forms.TextInput(attrs={'placeholder': '7 Digits Number'}))
-    password = forms.CharField(error_messages={'required': 'Please Input Password', 'max_length': 'Max Input is 20 Digits', 'min_length': 'Min Input is 6 Digits'},
-                               label='Password', required=True, max_length=20, min_length=6, widget=forms.PasswordInput(attrs={'placeholder': '6 to 60 Digits Password'}))
-    confirm_password = forms.CharField(error_messages={'required': 'Please Input Password', 'max_length': 'Max Input is 20 Digits', 'min_length': 'Min Input is 6 Digits'},
-                                       label='Confirm Password', required=True, max_length=20, min_length=6, widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Your Password'}))
+        label='Student Number',
+        required=True,
+        error_messages={'required': 'Your Student Number', 'max_length': 'Student Number is a 7 Digits Number', 'min_length': 'Student Number is a 7 Digits Number符'},
+        max_length=7,
+        min_length=7,
+        validators=[RegexValidator(r'^\d{1,10}$')], widget=forms.TextInput(attrs={'placeholder': '7 Digits Number'})
+    )
+    password = forms.CharField(
+        error_messages={'required': 'Please Input Password', 'max_length': 'Max Input is 20 Digits', 'min_length': 'Min Input is 6 Digits'},
+        label='Password',
+        required=True,
+        max_length=20,
+        min_length=6,
+        widget=forms.PasswordInput(attrs={'placeholder': '6 to 60 Digits Password'})
+    )
+    confirm_password = forms.CharField(
+        error_messages={'required': 'Please Input Password', 'max_length': 'Max Input is 20 Digits', 'min_length': 'Min Input is 6 Digits'},
+        label='Confirm Password',
+        required=True,
+        max_length=20,
+        min_length=6,
+        widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Your Password'})
+    )
 
     class Meta:
         model = get_user_model()
@@ -67,3 +91,75 @@ class SignupForm (forms.ModelForm):
         if not(password == confirm_password):
             raise forms.ValidationError("Password and Confirm Password are not SAME")
         return confirm_password
+
+
+class LoginForm (forms.Form):
+
+    username = forms.CharField(
+        label='username', required=False)
+    password = forms.CharField(
+        label='Password', required=False, widget=forms.PasswordInput())
+
+    def clean(self):
+        cleaned_data = super(LoginForm, self).clean()
+        UserModel = get_user_model()
+        username = cleaned_data.get("username")
+        username = username.strip()
+        password = cleaned_data.get("password")
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            if user.is_active:
+                return cleaned_data
+            else:
+                raise forms.ValidationError("This Account is not Actived")
+
+        else:
+            raise forms.ValidationError("This Account is not registered")
+
+        if not username or not password:
+            raise forms.ValidationError("username/Password cannot be empty")
+
+        else:
+            raise forms.ValidationError("username and Password does not Match")
+
+
+class ChangepwdForm(forms.Form):
+    oldpassword = forms.CharField(
+        error_messages={'required': 'Old Password incorrect', 'max_length': 'Max Input is 20 Digits', 'min_length': 'Min Input is 6 Digits'},
+        label='Password',
+        required=True,
+        max_length=20,
+        min_length=6,
+        widget=forms.PasswordInput(attrs={'placeholder': '6 to 60 Digits Password'})
+    )
+    newpassword1 = forms.CharField(
+        error_messages={'required': 'Please Input Password', 'max_length': 'Max Input is 20 Digits', 'min_length': 'Min Input is 6 Digits'},
+        label='Password',
+        required=True,
+        max_length=20,
+        min_length=6,
+        widget=forms.PasswordInput(attrs={'placeholder': '6 to 60 Digits Password'})
+    )
+    newpassword2 = forms.CharField(
+        error_messages={'required': 'New Password does not Match', 'max_length': 'Max Input is 20 Digits', 'min_length': 'Min Input is 6 Digits'},
+        label='Password',
+        required=True,
+        max_length=20,
+        min_length=6,
+        widget=forms.PasswordInput(attrs={'placeholder': '6 to 60 Digits Password'})
+    )
+
+    def clean(self):
+        if not self.is_valid():
+            raise forms.ValidationError('You have to fill all blanks')
+        else:
+            cleaned_data = super(ChangepwdForm, self).clean()
+        return cleaned_data
+
+    def clean_newpassword2(self):
+        newpassword1 = self.cleaned_data.get("newpassword1", False)
+        newpassword2 = self.cleaned_data["newpassword2"]
+        if not(newpassword1 == newpassword2):
+            raise forms.ValidationError("New Password and Confirm Password are not SAME")
+        return newpassword2

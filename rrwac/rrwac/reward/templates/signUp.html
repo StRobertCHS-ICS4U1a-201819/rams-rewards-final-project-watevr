@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load  staticfiles %}
 {% block content %}
 <body>
 	<div class="container">
@@ -7,22 +8,31 @@
 				<div class="header">
 					<div class="head-top">
 						<div class="top-menu">
-						<span class="menu"><img src="images/nav.png" alt=""/> </span>
+						<span class="menu"><img src={% static "images/nav.png" %} alt=""/> </span>
 							<ul>
 								<li class="active"><a href="/"><span>Home</span></a></li>
                 <li><a href="/profile"><span>Profile</span></a></li>
                 <li><a href="/history"><span>History</span></a></li>
-                <li><a href="/chart"><span>Chart</span></a></li>
-                <li><a href="/activities"><span>Activities</span></a></li>
+                <li><a href="/chart_date"><span>Chart</span></a></li>
                 <li><a href="/login"><span>Log In</span></a></li>
                 <li class="active"><a href="/signup"><span>Sign Up</span></a></li>
                 <li><a href="/logout"><span>Log Out</span></a></li>
+                {% if  request.user.id %}
+                                    <img id='barcode'
+                                        src="https://api.qrserver.com/v1/create-qr-code/?data={{ user.id }}&amp;size=100x100"
+                                        alt=""
+                                        title="Qr Code"
+                                        width="80"
+                                        height="80" />
+                                {% else %}
+                                    <img id='barcode'
+                                        src="{% static "images/blank.png"%}"
+                                        alt=""
+                                        title="Qr Code"
+                                        width="80"
+                                        height="80" />
+                                {% endif %}
 							</ul>
-						</div>
-						<div class="social-icons">
-							<a href="#"><i class="icon1"></i></a>
-							<a href="#"><i class="icon2"></i></a>
-							<a href="#"><i class="icon3"></i></a>
 						</div>
 							<!-- script for menu -->
 
@@ -49,15 +59,15 @@
                <form class="form-horizontal" id = "form" action="{{path}}" method="post">
                 {% csrf_token %}
 
-                <div class="form-group {%if form.username.errors%} has-error {%endif%}">
-                    <label for="username" class="col-sm-4 control-label">ID* :</label>
+                <div class="form-group {%if form.id.errors%} has-error {%endif%}">
+                    <label for="id" class="col-sm-4 control-label">Student Number* :</label>
                     <div class="col-sm-5">
                     {{form.id}}
                     </div>
                     {%if form.id.errors%}
                   <div class="col-sm-5 col-sm-offset-4 margint10">
                   <span class="color-background2 ">
-                  {% for error in form.username.errors %}
+                  {% for error in form.id.errors %}
                     {{ error|escape }}
                   {% endfor %}
                   </span>
