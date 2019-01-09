@@ -6,7 +6,6 @@ from django.contrib.auth.forms import PasswordChangeForm
 from reward.forms import *
 from django.contrib.auth import get_user_model
 from reward.models import Reward, Student
-import qrcode
 import datetime
 import time
 
