@@ -7,24 +7,60 @@
         Screen:
             id: sc1
             name: 'screen_one'
-            Button:
-                text: 'Screen One'
-                on_press:
-                    root.manager.current = "screen_four"
+
+            BoxLayout:
+                canvas:
+                    Rectangle:
+                        source: 'dis_bg.png'
+                        size: self.size
+                        pos: self.pos
+
+
+                Button:
+                    text: 'Screen One'
+                    size_hint: .5, .5
+                    on_press:
+                        root.manager.current = "screen_four"
         Screen
             id: sc2
             name: 'screen_two'
-            Button:
-                text: 'Screen Two'
-                on_press:
-                    root.manager.current = "screen_student_list"
+            BoxLayout:
+                canvas:
+                    Rectangle:
+                        source: 'rwd_bg.png'
+                        size: self.size
+                        pos: self.pos
+
+                Button:
+
+                    size_hint: .5, .5
+                    text: 'Screen Two'
+                    on_press:
+                        root.manager.current = "screen_student_list"
         Screen
             id: sc3
             name: 'screen_three'
-            Button:
-                text: 'Screen Three'
-                on_press:
-                    root.manager.current = "screen_date_list"
+            FloatLayout:
+                canvas:
+                    Rectangle:
+                        source: 'sdt_bg.png'
+                        size: self.size
+                        pos: self.pos
+
+                Button:
+                    text: 'First'
+                    pos: 250, 225
+                    size_hint: .1, .1
+                    on_press:
+                        root.manager.current = "screen_date_list"
+
+                Button:
+                    text: 'Second'
+                    background_color: (1.0, 0.0, 0.0, 1.0)
+                    pos: 593, 268
+                    size_hint: .1, .1
+                    on_press:
+                        root.manager.current = "screen_date_list"
 
         Screen:
             id: sc4

@@ -9,6 +9,9 @@ from kivy.core.window import Window
 from kivy.clock import Clock
 from kivy.factory import Factory
 from kivy.lang import Builder
+from kivy.core.window import Window
+from kivy.core.image import Image
+
 
 from RRTAA.package import RewardActivities
 from RRTAA.package import Student
