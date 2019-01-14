@@ -1,0 +1,59 @@
+#: import main rrsa
+
+
+<Rrsa>:
+    orientation: "vertical"
+    full_name_text_input: full_name
+    password_text_input: password
+
+    padding: 10
+    spacing: 20
+
+    BoxLayout:
+        size_hint_y: 0.05
+        height:
+
+        Label:
+            text: "Rams Reward Student App"
+
+    BoxLayout:
+        size_hint_y: None
+        height: "35dp"
+        Label:
+            text: "Please enter your first and last name:"
+            size_hint_x: 0.77
+        TextInput:
+            id: full_name
+
+    BoxLayout:
+        size_hint_y: None
+        height: "35dp"
+
+        Label:
+            text: "Password:"
+        TextInput:
+            id: password
+
+        Button:
+            text: "Submit"
+            size_hint_x: .3
+            on_press: root.login_success()
+
+    BoxLayout:
+        Button:
+            text: "View Reward Points"
+            on_press: root.view_student_rp()
+
+        Button:
+            text: "View Student Info"
+            on_press: root.view_student_info()
+
+    BoxLayout:
+        Button:
+            text: "View Rewards History"
+
+
+
+
+
+
