@@ -8,6 +8,7 @@ from django.contrib.auth import get_user_model
 from reward.models import Reward, Student
 import datetime
 import time
+import json
 
 
 def home(request):
@@ -108,3 +109,31 @@ def chart_date(request):
 def chart_activity(request):
     chart = {'rewards': Reward.objects.order_by('reward_name')}
     return render(request, 'chart_activity.html', chart)
+
+def get_all_users(request):
+    user_list = []
+    users = Student.objects.all()
+    for user in users:
+        user_dict = {}
+        user_dict['id'] = user.id
+        user_dict['user_name'] = user.username
+        user_dict['email'] = user.email
+        user_dict['points'] = user.student_points
+
+        user_list.append(user_dict)
+
+    user_list = list(user_list)
+    return HttpResponse(user_list)
+
+def get_single_user(request, user_id):
+    user = Student.objects.get(id=user_id)
+    user_dict = {}
+    user_dict['id'] = user.id
+    user_dict['user_name'] = user.username
+    user_dict['email'] = user.email
+    user_dict['points'] = user.student_points
+
+    return HttpResponse(json.dumps(user_dict))
+
+
+
