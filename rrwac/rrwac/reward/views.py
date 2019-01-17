@@ -135,5 +135,21 @@ def get_single_user(request, user_id):
 
     return HttpResponse(json.dumps(user_dict))
 
+def get_all_rewards(request):
+    reward_list = []
+    rewards = Reward.objects.all()
+    for reward in rewards:
+        reward_dict = {}
+        reward_dict['reward_number'] = reward.reward_number
+        reward_dict['reward_name'] = reward.reward_name
+        reward_dict['date'] = reward.date
+        reward_dict['description'] = reward.description
+        reward_dict['points'] = reward.points
+        reward_dict['strudent'] = {
+            for studnet in Reward.reward_object.objects
+        }
+        reward_list.append(reward_dict)
 
+    reward_list = list(reward_list)
+    return HttpResponse(reward_list)
 
