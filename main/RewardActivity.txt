@@ -1,5 +1,0 @@
-1,coding_club,5
-2,clean_up,7
-3,finish_homework,1
-4,school_camp,5
-5,cooking_course,5

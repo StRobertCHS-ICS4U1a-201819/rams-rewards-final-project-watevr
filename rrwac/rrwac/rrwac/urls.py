@@ -31,4 +31,5 @@ urlpatterns = [
     path('get_all_users/', views.get_all_users, name='get_all_users'),
     path('get_single_user/<int:user_id>/', views.get_single_user, name='get_single_user'),
     path('get_all_rewards/', views.get_all_rewards, name='get_all_rewards'),
+    path('get_single_reward/<int:reward_num>/', views.get_single_reward, name='get_single_reward'),
 ]

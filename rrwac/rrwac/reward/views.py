@@ -110,6 +110,7 @@ def chart_activity(request):
     chart = {'rewards': Reward.objects.order_by('reward_name')}
     return render(request, 'chart_activity.html', chart)
 
+
 def get_all_users(request):
     user_list = []
     users = Student.objects.all()
@@ -125,6 +126,7 @@ def get_all_users(request):
     user_list = list(user_list)
     return HttpResponse(user_list)
 
+
 def get_single_user(request, user_id):
     user = Student.objects.get(id=user_id)
     user_dict = {}
@@ -134,6 +136,7 @@ def get_single_user(request, user_id):
     user_dict['points'] = user.student_points
 
     return HttpResponse(json.dumps(user_dict))
+
 
 def get_all_rewards(request):
     reward_list = []
@@ -145,11 +148,26 @@ def get_all_rewards(request):
         reward_dict['date'] = reward.date
         reward_dict['description'] = reward.description
         reward_dict['points'] = reward.points
-        reward_dict['strudent'] = {
-            for studnet in Reward.reward_object.objects
-        }
+        reward_dict['student'] = []
+        for student in reward.reward_object.all():
+            reward_dict['student'].append(student.id)
+
         reward_list.append(reward_dict)
 
     reward_list = list(reward_list)
     return HttpResponse(reward_list)
 
+
+def get_single_reward(request, reward_num):
+    reward = Reward.objects.get(reward_number=reward_num)
+    reward_dict = {}
+    reward_dict['reward_number'] = reward.reward_number
+    reward_dict['reward_name'] = reward.reward_name
+    reward_dict['date'] = reward.date
+    reward_dict['description'] = reward.description
+    reward_dict['points'] = reward.points
+    reward_dict['student'] = []
+    for student in reward.reward_object.all():
+        reward_dict['student'].append(student.id)
+
+    return HttpResponse(reward_dict)
