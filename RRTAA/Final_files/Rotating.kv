@@ -1,0 +1,9 @@
+<Loading>:
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: self.angle
+            axis: (0, 0, 1)
+            origin: self.center
+    canvas.after:
+        PopMatrix
