@@ -1,61 +1,34 @@
 import kivy
 kivy.require("1.10.1")
-
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
-from kivy.properties import ObjectProperty, ListProperty
+from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
-
-import requests
-import json
-
-
-
+from kivy.core.window import Window
+from kivy.clock import Clock
+from kivy.factory import Factory
+from kivy.lang import Builder
+from kivy.core.window import Window
+from kivy.core.image import Image
+from kivy.uix.boxlayout import BoxLayout
 from RRTAA.package import RewardActivities
 from RRTAA.package import Student
+
 
 class RootWidget(TabbedPanel):
 
     manager = ObjectProperty(None)
 
-    reward_data = ObjectProperty(None)
-    student_data = ObjectProperty(None)
+    reward_history1 = ObjectProperty(None)
+    reward_history2 = ObjectProperty(None)
+    reward_history3 = ObjectProperty(None)
+    reward_history4 = ObjectProperty(None)
 
-    reward_activity = ListProperty(None)
-    activity_selected = ObjectProperty(None)
-    activity_order = ObjectProperty(None)
-    point = ObjectProperty(None)
-
-    rewarded_student = ObjectProperty(None)
-    student_order = ObjectProperty(None)
-
-
-    def reward(self):
-
-        # we define a request object that is equal to requests.get('API')
-        req = requests.get('http://localhost:8000/get_single_reward/1/')
-        # we then print out the http status_code that was returned on making this request
-        # you should see a successful '200' code being returned.
-        print(req.status_code)
-
-        self.reward_data = json.loads(req)
-
-        for reward in self.reward_data['reward']:
-            self.reward_activity.append(reward['reward_name'])
-
-
-
-
-    def student(self):
-
-        # we define a request object that is equal to requests.get('API')
-        req = requests.get('http://localhost:8000/get_single_reward/1/')
-        # we then print out the http status_code that was returned on making this request
-        # you should see a successful '200' code being returned.
-        print(req.status_code)
-
-        self.student_data = json.loads(req)
-
+    date_history1 = ObjectProperty(None)
+    date_history2 = ObjectProperty(None)
+    date_history3 = ObjectProperty(None)
+    date_history4 = ObjectProperty(None)
+    date_history5 = ObjectProperty(None)
 
     def switch_to(self, header):
         # set the Screen manager to load  the appropriate screen
@@ -67,54 +40,70 @@ class RootWidget(TabbedPanel):
         self._current_tab = header
 
     def spinner_clicked(self, acitivies_name):
+        value = RewardActivities.reward.get_point_value(acitivies_name)
 
-        for i in len(self.reward_data['reward_name']):
-            if self.reward_data[i]['reward_name'] == self.activities_name:
-                self.activity_selected = self.reward_data[i]
-                self.activity_order = i
+        print(value)
 
-        self.point = self.activity_selected[points]
-
-
-        self.rewardActivity = acitivies_name
+        Student.reward_info.set_point_reward(value)
+        Student.reward_info.set_activities(acitivies_name)
 
     def id_inputted(self, id):
+        print(id)
+        Student.student_list.get_student_object(id)
 
-        for i in len(self.student_data['id']):
-            if self.student_data[i]['id'] == id:
-                self.rewarded_student = self.student_data[i]
-                self.student_order = i
-                break
+        print(Student.student1.point)
+        print(Student.student2.point)
+        print(Student.student3.point)
+        print(Student.student4.point)
 
-        self.rewarded_student[points] += 1
-        self.activity_selected[student].append(id)
+    def set_student_history(self):
+        self.reward_history1 = Student.student1.reward_history_list
+        self.reward_history2 = Student.student2.reward_history_list
+        self.reward_history3 = Student.student3.reward_history_list
+        self.reward_history4 = Student.student4.reward_history_list
 
+        print(self.reward_history1)
+        print(self.reward_history2)
+        print(self.reward_history3)
+        print(self.reward_history4)
 
-        self.student_data[self.student_order] = self.rewarded_student
+    def add_date(self, val_date):
+        Student.reward_info.set_date_list(val_date)
 
-        with open('new_student_data.json', 'w') as f:
-            json.dump(self.student_data, f)
+    def set_date_history(self):
+        self.date_history1 = Student.activities1.date_list
+        self.date_history2 = Student.activities2.date_list
+        self.date_history3 = Student.activities3.date_list
+        self.date_history4 = Student.activities4.date_list
+        self.date_history5 = Student.activities5.date_list
 
+    def bubbprint(self, message):
+        message = repr(message)
+        if not self.info_bubble:
+            self.info_bubble = Factory.InfoBubble()
+        self.info_bubble.message = message
 
-    def add_date(self, date):
-        self.activity_selected[date].append(date)
+        # Check if bubble is not already on screen
+        if not self.info_bubble.parent:
+            Window.add_widget(self.info_bubble)
 
-        self.reward_data[self.activity_order] = self.activity_selected
-        with open('new_reward_data.json', 'w') as f:
-            json.dump(self.reward_data, f)
-
-
+        # Remove bubble after 2 secs
+        Clock.schedule_once(lambda dt:
+                            Window.remove_widget(self.info_bubble), 2)
 
 
 
 class ScreenOne(Screen):
     pass
 
+
 class ScreenTwo(Screen):
     pass
 
+
 class ScreenThree(Screen):
     pass
+
 
 class Manager(ScreenManager):
 
@@ -123,15 +112,13 @@ class Manager(ScreenManager):
     screen_three = ObjectProperty(None)
     screen_four = ObjectProperty(None)
 
-class CombineApp(App):
+
+class Combine1App(App):
 
     def build(self):
         return RootWidget()
 
 
 
-
-
 if __name__ == '__main__':
-
-    CombineApp().run()
+    Combine1App().run()
