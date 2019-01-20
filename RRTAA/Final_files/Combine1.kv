@@ -68,6 +68,13 @@
         Screen:
             id: sc4
             name: 'screen_four'
+
+            FloatLayout:
+                canvas:
+                    Rectangle:
+                        source: 'light.jpg'
+                        size: self.size
+                        pos: self.pos
             BoxLayout:
                 orientation: "vertical"
                 size: root.size
@@ -75,7 +82,7 @@
                 padding: 20
 
                 Label:
-                    text: "First Step"
+                    text: "Add Activities"
 
                 Button:
                     text: 'Next'
