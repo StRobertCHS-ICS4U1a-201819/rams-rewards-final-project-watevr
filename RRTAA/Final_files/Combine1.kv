@@ -22,6 +22,7 @@
                     size_hint: .2, .155
                     on_press:
                         root.manager.current = "screen_four"
+                        root.reward()
         Screen
             id: sc2
             name: 'screen_two'
@@ -75,11 +76,7 @@
                         source: 'light.jpg'
                         size: self.size
                         pos: self.pos
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
+
 
                 Label:
                     text: "Add Activities"
@@ -125,8 +122,7 @@
                 Button:
                     text: 'Submit'
                     on_press:
-                        root.id_inputted(ta.text)
-                        root.set_student_history()
+                        root.id_inputted(student_id.text)
 
         Screen:
             id: sc6
