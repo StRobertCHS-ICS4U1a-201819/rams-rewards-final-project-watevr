@@ -1,20 +1,5 @@
-'''
-Qrcode example application
-==========================
-
-Author: Mathieu Virbel <mat@meltingrocks.com>
-
-Featuring:
-
-- Android camera initialization
-- Show the android camera into a Android surface that act as an overlay
-- New AndroidWidgetHolder that control any android view as an overlay
-- New ZbarQrcodeDetector that use AndroidCamera / PreviewFrame + zbar to
-  detect Qrcode.
-
-'''
-
-__version__ = '1.0'
+import kivy
+kivy.require("1.10.1")
 
 from collections import namedtuple
 from kivy.lang import Builder

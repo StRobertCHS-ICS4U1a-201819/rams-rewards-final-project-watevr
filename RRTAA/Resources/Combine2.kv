@@ -46,6 +46,12 @@
                     values: ["Highest Mark", "Average over 85", "Club Meeting", "Sport Team", "Activities Leader"]
                     id: spinner_id
                     on_text: root.spinner_clicked(spinner_id.text)
+        Screen:
+            id: sc88
+            BoxLayout:
+                for i in(root.num):
+                    Button:
+                        text: "Next"
 
         Screen:
             id: sc5

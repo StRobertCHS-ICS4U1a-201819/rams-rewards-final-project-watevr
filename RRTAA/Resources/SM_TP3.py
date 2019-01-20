@@ -17,17 +17,7 @@ class RootWidget(TabbedPanel):
 
     manager = ObjectProperty(None)
 
-    reward_history1 = ObjectProperty(None)
-    reward_history2 = ObjectProperty(None)
-    reward_history3 = ObjectProperty(None)
-    reward_history4 = ObjectProperty(None)
-
-    date_history1 = ObjectProperty(None)
-    date_history2 = ObjectProperty(None)
-    date_history3 = ObjectProperty(None)
-    date_history4 = ObjectProperty(None)
-    date_history5 = ObjectProperty(None)
-
+    num = ObjectProperty(None)
     def switch_to(self, header):
         # set the Screen manager to load  the appropriate screen
         # linked to the tab head instead of loading content
@@ -44,6 +34,7 @@ class RootWidget(TabbedPanel):
 
         Student.reward_info.set_point_reward(value)
         Student.reward_info.set_activities(acitivies_name)
+        self.num = 6
 
     def id_inputted(self, id):
         print(id)

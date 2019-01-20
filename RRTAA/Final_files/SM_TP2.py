@@ -1,6 +1,5 @@
 import kivy
 kivy.require("1.10.1")
-
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.properties import ObjectProperty, StringProperty
@@ -11,10 +10,10 @@ from kivy.factory import Factory
 from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.core.image import Image
-
-
+from kivy.uix.boxlayout import BoxLayout
 from RRTAA.package import RewardActivities
 from RRTAA.package import Student
+
 
 class RootWidget(TabbedPanel):
 
@@ -92,14 +91,19 @@ class RootWidget(TabbedPanel):
         Clock.schedule_once(lambda dt:
                             Window.remove_widget(self.info_bubble), 2)
 
+
+
 class ScreenOne(Screen):
     pass
+
 
 class ScreenTwo(Screen):
     pass
 
+
 class ScreenThree(Screen):
     pass
+
 
 class Manager(ScreenManager):
 
@@ -108,11 +112,10 @@ class Manager(ScreenManager):
     screen_three = ObjectProperty(None)
     screen_four = ObjectProperty(None)
 
+
 class Combine1App(App):
 
     def build(self):
         return RootWidget()
 
 
-if __name__ == '__main__':
-    Combine1App().run()
