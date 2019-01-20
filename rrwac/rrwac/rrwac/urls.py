@@ -18,7 +18,7 @@ from django.urls import path
 from reward import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls, name='admin'),
+    path('teacher/', admin.site.urls, name='teacher'),
     path('', views.home, name='home'),
     path('login/', views.login, name='login'),
     path('signup/', views.SignUp, name='signup'),

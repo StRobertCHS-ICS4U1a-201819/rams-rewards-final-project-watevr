@@ -145,7 +145,7 @@ def get_all_rewards(request):
         reward_dict = {}
         reward_dict['reward_number'] = reward.reward_number
         reward_dict['reward_name'] = reward.reward_name
-        reward_dict['date'] = reward.date
+        reward_dict['date'] = str(reward.date)
         reward_dict['description'] = reward.description
         reward_dict['points'] = reward.points
         reward_dict['student'] = []
@@ -163,11 +163,11 @@ def get_single_reward(request, reward_num):
     reward_dict = {}
     reward_dict['reward_number'] = reward.reward_number
     reward_dict['reward_name'] = reward.reward_name
-    reward_dict['date'] = reward.date
+    reward_dict['date'] = str(reward.date)
     reward_dict['description'] = reward.description
     reward_dict['points'] = reward.points
     reward_dict['student'] = []
     for student in reward.reward_object.all():
         reward_dict['student'].append(student.id)
 
-    return HttpResponse(reward_dict)
+    return HttpResponse(json.dumps(reward_dict))

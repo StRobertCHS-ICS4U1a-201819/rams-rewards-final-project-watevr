@@ -31,11 +31,11 @@ p{
 }
 ul{
 	padding:0 0;
-	margin:0 0;	
+	margin:0 0;
 }
 body{
 	padding:0 0;
-	margin:0 0; 
+	margin:0 0;
     background: url('../images/bg.png');
 	font-family: 'OpenSans-Regular';
 }
@@ -142,7 +142,7 @@ font-family: 'Exo-SemiBold';
 .logo h1 a{
 	text-decoration:none;
 	color:#e42313;
-	
+
 }
 /*  GRID 1 OF THREE  */
 .interior-grids{
@@ -243,7 +243,7 @@ color:#ae9a64;
   line-height: 1.8em;
   text-align: left;
  }
- 
+
  .product-grids {
   margin-top: 3em;
 }
@@ -268,7 +268,7 @@ a.button1:hover {
   float: left;
   background: #ae9a64;
   padding: 4em 0;
-  
+
   }
 .new-number h4 {
   font-size: 3em;
@@ -328,7 +328,7 @@ a.button1:hover {
 	background: url("../images/to-top2.png") no-repeat 0px 0px;
 }
 .header-banner {
-  background: url("../images/banner.jpg")no-repeat 0px 0px;
+  background: url("../images/abc.jpg")no-repeat 0px 0px;
   background-size: cover;
   min-height: 140px;
 }
@@ -482,7 +482,7 @@ img.zoom-img:hover {
 /*-- Typography --*/
 .typo {
   text-align: left;
-  
+
 }
 .typo {
   padding: 4em 0;
@@ -519,7 +519,7 @@ img.zoom-img:hover {
 .label {
   font-weight: 300 !important;
   border-radius:4px;
-}  
+}
 .grid_5{
 	background:none;
 	padding:2em 0;
@@ -676,7 +676,7 @@ img.zoom-img:hover {
   font-weight: 400;
   line-height: 1.8em;
   margin-bottom: 19px;
-  
+
 }
 .company_ad p{
 	font-size: 1em;
@@ -748,7 +748,7 @@ img.zoom-img:hover {
 }
 .new-text {
    padding: 1.4em 1em;
- 
+
 }
 a.button1 {
    margin-top: 0.5em;
@@ -1140,7 +1140,7 @@ span.menu {
 }
 .new-text {
     padding: 1.16em 1em;
- 
+
 }
 .new-number h4 {
   font-size: 2em;
