@@ -133,6 +133,7 @@ def get_single_user(request, user_id):
     user_dict['id'] = user.id
     user_dict['user_name'] = user.username
     user_dict['email'] = user.email
+    user_dict['password'] = user.password
     user_dict['points'] = user.student_points
 
     return HttpResponse(json.dumps(user_dict))
@@ -165,6 +166,7 @@ def get_single_reward(request, reward_num):
     reward_dict['reward_name'] = reward.reward_name
     reward_dict['date'] = str(reward.date)
     reward_dict['description'] = reward.description
+    reward_dict['date'] = str(reward.date)
     reward_dict['points'] = reward.points
     reward_dict['student'] = []
     for student in reward.reward_object.all():
