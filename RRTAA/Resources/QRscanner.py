@@ -7,6 +7,8 @@ from kivy.clock import Clock
 from kivy.graphics.texture import Texture
 from kivy.uix.boxlayout import BoxLayout
 from kivy.core.window import Window
+import time
+
 
 
 class KivyCamera(Image):
@@ -54,6 +56,17 @@ class QrtestHome(BoxLayout):
             capture.release()
             capture = None
         EventLoop.close()
+
+
+    def capture(self):
+        '''
+        Function to capture the images and give them the names
+        according to their captured time and date.
+        '''
+        camera = self.ids['qrcam']
+        timestr = time.strftime("%Y%m%d_%H%M%S")
+        camera.export_to_png("IMG_{}.png".format(timestr))
+        print("Captured")
 
 
 class TestCameraApp(App):

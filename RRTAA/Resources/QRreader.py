@@ -1,6 +1,6 @@
-from qrtools import QR
+from qrtools.qrtools import QR
 
-my_QR = QR(filename = "home/user/Desktop/qr.png")
+my_QR = QR(filename = "home/user/Desktop/QR.jpg")
 
 my_QR.decode()
 
