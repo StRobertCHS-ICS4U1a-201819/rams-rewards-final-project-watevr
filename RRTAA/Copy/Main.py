@@ -146,7 +146,6 @@ class RootWidget(TabbedPanel):
         '''
         camera = self.ids['qrcam']
         timestr = time.strftime("%Y%m%d_%H%M%S")
-        camera.export_to_png("IMG_{}.png".format(timestr))
         ret, frame = capture.read()
         # 转为灰度图像
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
