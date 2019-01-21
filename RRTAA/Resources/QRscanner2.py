@@ -18,6 +18,8 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 import time
 
+import pyzbar.pyzbar as pyzbar
+
 
 
 class CameraClick(BoxLayout):
@@ -29,6 +31,15 @@ class CameraClick(BoxLayout):
         camera = self.ids['camera']
         timestr = time.strftime("%Y%m%d_%H%M%S")
         camera.export_to_png("IMG_{}.png".format(timestr))
+        barcodes = pyzbar.decode(camera)
+
+        barcodeData = barcodes.data.decode("utf-8")
+        barcodeType = barcodes.type
+
+        text = "{} ({})".format(barcodeData, barcodeType)
+
+        print("[INFO] Found {} barcode: {}".format(barcodeType, barcodeData))
+        print(text)
         print("Captured")
 
 

@@ -88,40 +88,40 @@
                 Button:
                     text: 'Next'
                     on_press:
-                        root.manager.current = "screen_five"
+                        root.manager.current = "QR_scanner"
 
         Screen:
             id: sc5
-            name: 'screen_five'
+            name: 'QR_scanner'
             BoxLayout:
                 orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
 
                 Label:
-                    text: 'Use your phone to scan the barcode and enter the id of student in the box below '
+                    height: 20
+                    size_hint_y: None
+                    text: 'Testing the camera'
+
+            KivyCamera:
+                id: qrcam
+
+            BoxLayout:
+                orientation: "horizontal"
+                height: 20
+                size_hint_y: None
+
+                Button:
+                    id: butt_start
+                    size_hint: 0.5,1
+                    text: "start"
+                    on_press: root.dostart()
 
 
 
                 Button:
-                    text: 'Next'
-                    on_press:
-                        root.manager.current = "screen_date"
-                TextInput:
-                    id: _a
-                    hint_text: 'hello'
-                    multiline: 'False'
-                    size: 500,400
-                    size_hint: None, None
-                    text:'Enter here'
-                    id: student_id
-
-                Button:
-                    text: 'Submit'
-                    on_press:
-                        root.id_inputted(student_id.text)
-
+                    id: butt_detect
+                    text: "detect"
+                    size_hint: 0.5,1
+                    on_press: root.capture()
         Screen:
             id: sc6
             name: 'screen_student_list'

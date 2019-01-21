@@ -87,7 +87,7 @@
                 Button:
                     text: 'Next'
                     on_press:
-                        root.manager.current = "screen_five"
+                        root.manager.current = "QR_scanner"
 
                 Spinner:
                     text: "Reward Activities"
@@ -244,6 +244,44 @@
                     text: 'Back Page'
                     on_press:
                         root.manager.current = "screen_activity_list"
+
+
+        Screen:
+            id: sc11
+            name: 'QR_scanner'
+            BoxLayout:
+                orientation: "vertical"
+
+                Label:
+                    height: 20
+                    size_hint_y: None
+                    text: 'Testing the camera'
+
+            KivyCamera:
+                id: qrcam
+
+            BoxLayout:
+                orientation: "horizontal"
+                height: 20
+                size_hint_y: None
+
+                Button:
+                    id: butt_start
+                    size_hint: 0.5,1
+                    text: "start"
+                    on_press: root.dostart()
+
+
+
+                Button:
+                    id: butt_detect
+                    text: "detect"
+                    size_hint: 0.5,1
+                    on_press: root.capture()
+
+
+
+
 
 
 
