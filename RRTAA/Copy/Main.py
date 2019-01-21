@@ -25,15 +25,22 @@ class RootWidget(TabbedPanel):
     manager = ObjectProperty(None)
 
     reward_data = ObjectProperty(None)
-    student_data = ObjectProperty(None)
+    reward_activity = ObjectProperty(None)
 
-    reward_activity = ListProperty(None)
+    student_data = ObjectProperty(None)
+    student_name_list = ObjectProperty(None)
+
     activity_selected = ObjectProperty(None)
     activity_order = ObjectProperty(None)
     point = ObjectProperty(None)
 
     rewarded_student = ObjectProperty(None)
     student_order = ObjectProperty(None)
+
+    activity_history = ObjectProperty(None)
+
+    date_history = ObjectProperty(None)
+
 
 
     def reward(self):
@@ -47,7 +54,7 @@ class RootWidget(TabbedPanel):
         self.reward_data = json.loads(req)
 
         for reward in self.reward_data['reward']:
-            self.reward_activity.append(reward['reward_name'])
+            self.reward_activity.append(reward)
 
 
 
@@ -62,6 +69,9 @@ class RootWidget(TabbedPanel):
 
         self.student_data = json.loads(req)
 
+        for student in self.student_data['user_name']:
+            self.student_name_list.append(student)
+
 
     def switch_to(self, header):
         # set the Screen manager to load  the appropriate screen
@@ -72,17 +82,16 @@ class RootWidget(TabbedPanel):
         header.state = 'down'
         self._current_tab = header
 
-    def spinner_clicked(self, acitivies_name):
+    def spinner_clicked(self, activities_name):
 
         for i in len(self.reward_data['reward_name']):
-            if self.reward_data[i]['reward_name'] == self.activities_name:
+            if self.reward_data[i]['reward_name'] == activities_name:
                 self.activity_selected = self.reward_data[i]
                 self.activity_order = i
 
-        self.point = self.activity_selected[points]
+        self.point = self.activity_selected['points']
 
-
-        self.rewardActivity = acitivies_name
+        self.rewardActivity = activities_name
 
     def id_inputted(self, id):
 
@@ -92,8 +101,8 @@ class RootWidget(TabbedPanel):
                 self.student_order = i
                 break
 
-        self.rewarded_student[points] += 1
-        self.activity_selected[student].append(id)
+        self.rewarded_student['points'] += 1
+        self.activity_selected['student'].append(id)
 
 
         self.student_data[self.student_order] = self.rewarded_student
@@ -109,6 +118,18 @@ class RootWidget(TabbedPanel):
         with open('new_reward_data.json', 'w') as f:
             json.dump(self.reward_data, f)
 
+
+    def spinner_clicked2(self, student_name):
+        for i in len(self.student_data['user_name']):
+            if self.student_data[i]['reward_name'] == student_name:
+                self.activity_history = self.reward_data[i]['activity']
+                break
+
+    def spinner_clicked2(self, activity_name):
+        for i in len(self.reward_data['date']):
+            if self.reward_data[i]['date'] == activity_name:
+                self.date_history = self.reward_data[i]['date']
+                break
 
 
 

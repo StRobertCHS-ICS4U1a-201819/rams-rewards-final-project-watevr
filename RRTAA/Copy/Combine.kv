@@ -131,26 +131,16 @@
                 spacing: 20
                 padding: 20
 
+                Spinner:
+                    text: "Student List"
+                    values: root.student_name_list
+                    id: spinner_id
+                    on_text: root.spinner_clicked2(spinner_id.text)
 
                 Button:
-                    text: 'Justin, Guo'
+                    text: 'Show history'
                     on_press:
-                        root.manager.current = "screen_Guo"
-
-                Button:
-                    text: 'Evan Bai'
-                    on_press:
-                        root.manager.current = "screen_Bai"
-
-                Button:
-                    text: 'Jerry Cui'
-                    on_press:
-                        root.manager.current = "screen_Cui"
-
-                Button:
-                    text: 'Waldon Zhang'
-                    on_press:
-                        root.manager.current = "screen_Zhang"
+                        root.manager.current = "screen_student_history"
 
                 Button:
                     text: 'Home'
@@ -160,65 +150,24 @@
 
         Screen:
             id: sc7
-            name: 'screen_Guo'
+            name: 'screen_student_history'
             BoxLayout:
                 orientation: "vertical"
                 size: root.size
                 spacing: 20
                 padding: 20
 
-                Button:
-                    text: str(root.reward_history1)
+                Label:
+                    text: str(root.reward_history)
+
                 Button:
                     text: 'Back Page'
                     on_press:
                         root.manager.current = "screen_student_list"
+
+
         Screen:
             id: sc8
-            name: 'screen_Bai'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
-                Button:
-                    text: str(root.reward_history2)
-                Button:
-                    text: 'Back Page'
-                    on_press:
-                        root.manager.current = "screen_student_list"
-
-        Screen:
-            id: sc9
-            name: 'screen_Cui'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
-                Button:
-                    text: str(root.reward_history3)
-                Button:
-                    text: 'Back Page'
-                    on_press:
-                        root.manager.current = "screen_student_list"
-        Screen:
-            id: sc10
-            name: 'screen_Zhang'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
-                Button:
-                    text: str(root.reward_history4)
-                Button:
-                    text: 'Back Page'
-                    on_press:
-                        root.manager.current = "screen_student_list"
-
-        Screen:
-            id: sc11
             name: 'screen_date'
             BoxLayout:
                 orientation: "vertical"
@@ -234,6 +183,7 @@
                     on_press:
 
                         root.add_date(ti.text)
+                        root.set_date_history()
 
                 TextInput:
                     id: _a
@@ -249,109 +199,46 @@
                     on_press:
                         root.manager.current = "screen_one"
         Screen
-            id: sc12
-            name: 'screen_date_list'
+            id: sc9
+            name: 'screen_activity_list'
             BoxLayout:
                 orientation: "vertical"
                 size: root.size
                 spacing: 20
                 padding: 20
-                Button:
-                    text: 'Highest Mark'
-                    on_press:
-                        root.manager.current = "screen_13"
-                Button:
-                    text: 'Average over 85'
-                    on_press:
-                        root.manager.current = "screen_14"
-                Button:
-                    text: 'Club Meeting'
-                    on_press:
-                        root.manager.current = "screen_15"
-                Button:
-                    text: 'Sport Team'
-                    on_press:
-                        root.manager.current = "screen_16"
+
+                Spinner:
+                    text: "Activity List"
+                    values: root.reward_activity
+                    id: spinner_id
+                    on_text: root.spinner_clicked3(spinner_id.text)
 
                 Button:
-                    text: 'Activities Leader'
+                    text: 'Show history'
                     on_press:
-                        root.manager.current = "screen_17"
+                        root.manager.current = "screen_date_history"
+
                 Button:
                     text: 'Home'
                     on_press:
                         root.manager.current = "screen_three"
-        Screen
-            id: sc13
-            name: 'screen_13'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
-                Button:
-                    text: str(root.date_history1)
-                Button:
-                    text: 'Back Page'
-                    on_press:
-                        root.manager.current = "screen_date_list"
-        Screen
-            id: sc14
-            name: 'screen_14'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
-                Button:
-                    text: str(root.date_history2)
-                Button:
-                    text: 'Back Page'
-                    on_press:
-                        root.manager.current = "screen_date_list"
-        Screen
-            id: sc15
-            name: 'screen_15'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
-                Button:
-                    text: str(root.date_history3)
-                Button:
-                    text: 'Back Page'
-                    on_press:
-                        root.manager.current = "screen_date_list"
-        Screen
-            id: sc16
-            name: 'screen_16'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
-                Button:
-                    text: str(root.date_history4)
-                Button:
-                    text: 'Back Page'
-                    on_press:
-                        root.manager.current = "screen_date_list"
-        Screen
-            id: sc17
-            name: 'screen_17'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
-                Button:
-                    text: str(root.date_history5)
-                Button:
-                    text: 'Back Page'
-                    on_press:
-                        root.manager.current = "screen_date_list"
 
+        Screen:
+            id: sc10
+            name: 'screen_date_history'
+            BoxLayout:
+                orientation: "vertical"
+                size: root.size
+                spacing: 20
+                padding: 20
+
+                Label:
+                    text: str(root.date_history)
+
+                Button:
+                    text: 'Back Page'
+                    on_press:
+                        root.manager.current = "screen_activity_list"
 
 
 
