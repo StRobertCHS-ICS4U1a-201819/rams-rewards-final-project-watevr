@@ -3,6 +3,10 @@
 <ScreenManagement>:
     MainScreen:
         id: main
+    HomePage:
+        id: home
+
+
 
 <MainScreen>:
     name: "main_screen"
@@ -61,9 +65,27 @@
             size_hint_y: .2
             height: 90
             text: 'Login'
+            on_press:
+                root.manager.ids.main.login()
+                root.manager.transition.direction = 'left'
 
-
-
+<HomePage>:
+    name: "homepage"
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: (.8, .8)
+        pos_hint: {"center_x": .5, "center_y": .5}
+        cols: 2
+        Label:
+            text: "Home Page"
+        Button:
+            text: 'Press to view History of Rewards Activity'
+        Button:
+            text: 'Press to view your Info/Reward Points'
+        Button:
+            text: 'Press to view your qrcode'
+        Button:
+            text: 'Logout'
 
 
 

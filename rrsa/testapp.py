@@ -37,6 +37,12 @@ class MainScreen(Screen):
         popup.open()
 
 
+
+class HomePage(Screen):
+
+    def logout(self):
+        self.parent.current = 'main_screen'
+
 class TestApp(App):
     title = "RRSA"
 
