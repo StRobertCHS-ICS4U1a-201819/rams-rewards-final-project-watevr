@@ -11,15 +11,10 @@ from kivy.uix.boxlayout import BoxLayout
 import time
 import pyzbar.pyzbar as pyzbar
 import cv2
-from kivy.base import EventLoop
 
 import requests
 import json
 
-
-
-from RRTAA.package import RewardActivities
-from RRTAA.package import Student
 
 class RootWidget(TabbedPanel):
 
@@ -49,23 +44,22 @@ class RootWidget(TabbedPanel):
     def reward(self):
 
         # we define a request object that is equal to requests.get('API')
-        req = requests.get('http://localhost:8000/get_single_reward/1/')
+        req = requests.get('http://localhost:8000/get_all_reward/')
         # we then print out the http status_code that was returned on making this request
         # you should see a successful '200' code being returned.
         print(req.status_code)
 
         self.reward_data = json.loads(req)
 
-        for reward in self.reward_data['reward']:
+        for reward in self.reward_data['reward_name']:
             self.reward_activity.append(reward)
-
 
 
 
     def student(self):
 
         # we define a request object that is equal to requests.get('API')
-        req = requests.get('http://localhost:8000/get_single_reward/1/')
+        req = requests.get('http://localhost:8000/get_all_users/')
         # we then print out the http status_code that was returned on making this request
         # you should see a successful '200' code being returned.
         print(req.status_code)
@@ -74,6 +68,7 @@ class RootWidget(TabbedPanel):
 
         for student in self.student_data['user_name']:
             self.student_name_list.append(student)
+
 
 
     def switch_to(self, header):
@@ -91,9 +86,9 @@ class RootWidget(TabbedPanel):
             if self.reward_data[i]['reward_name'] == activities_name:
                 self.activity_selected = self.reward_data[i]
                 self.activity_order = i
+                break
 
         self.point = self.activity_selected['points']
-
         self.rewardActivity = activities_name
 
     def id_inputted(self):
@@ -128,7 +123,7 @@ class RootWidget(TabbedPanel):
                 self.activity_history = self.reward_data[i]['activity']
                 break
 
-    def spinner_clicked2(self, activity_name):
+    def spinner_clicked3(self, activity_name):
         for i in len(self.reward_data['date']):
             if self.reward_data[i]['date'] == activity_name:
                 self.date_history = self.reward_data[i]['date']

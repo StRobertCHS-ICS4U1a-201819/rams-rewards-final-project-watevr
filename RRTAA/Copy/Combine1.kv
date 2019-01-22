@@ -95,38 +95,6 @@
                     id: spinner_id
                     on_text: root.spinner_clicked1(spinner_id.text)
 
-        Screen:
-            id: sc5
-            name: 'screen_five'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
-
-                Label:
-                    text: 'Use your phone to scan the barcode and enter the id of student in the box below '
-
-
-
-                Button:
-                    text: 'Next'
-                    on_press:
-                        root.manager.current = "screen_date"
-                TextInput:
-                    id: _a
-                    hint_text: 'hello'
-                    multiline: 'False'
-                    size: 500,400
-                    size_hint: None, None
-                    text:'Enter here'
-                    id: ta
-
-                Button:
-                    text: 'Submit'
-                    on_press:
-                        root.id_inputted(ta.text)
-                        root.set_student_history()
 
         Screen:
             id: sc6
@@ -267,17 +235,22 @@
 
                 Button:
                     id: butt_start
-                    size_hint: 0.5,1
+                    size_hint: 0.3,1
                     text: "start"
                     on_press: root.dostart()
-
-
 
                 Button:
                     id: butt_detect
                     text: "detect"
-                    size_hint: 0.5,1
+                    size_hint: 0.3,1
                     on_press: root.capture()
+
+                Button:
+                    id: next
+                    size_hint: 0.3,1
+                    text: "next"
+                    on_press: root.manager.current = "screen_student_list"
+
 
 
 

@@ -148,7 +148,7 @@ class RootWidget(TabbedPanel):
             # 向终端打印条形码数据和条形码类型
             print("[INFO] Found {} barcode: {}".format(barcodeType, barcodeData))
             print(text)
-
+            print(barcodeData)
 
 class KivyCamera(Image):
 
