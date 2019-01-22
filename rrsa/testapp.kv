@@ -9,6 +9,8 @@
         id: rewards
     StudentInfo:
         id: info
+    StudentQRCode:
+        id: qrcode
 
 
 <MainScreen>:
@@ -76,20 +78,28 @@
         pos_hint: {"center_x": .5, "center_y": .5}
         cols: 2
         Label:
+            size_hint: 1, .1
             text: "Home Page"
         Button:
+            size_hint: 1, .225
             text: 'Press to view History of Rewards Activity'
             on_press:
                 root.manager.ids.home.to_rewards()
                 root.manager.transition.direction = 'left'
         Button:
+            size_hint: 1, .225
             text: 'Press to view your Info/Reward Points'
             on_press:
                 root.manager.ids.home.to_info()
                 root.manager.transition.direction = 'up'
         Button:
+            size_hint: 1, .225
             text: 'Press to view your qrcode'
+            on_press:
+                root.manager.ids.home.qr_code()
+                root.manager.transition.direction = 'down'
         Button:
+            size_hint: 1, .225
             text: 'Logout'
             on_press:
                 root.manager.ids.home.logout()
@@ -130,7 +140,7 @@
             size_hint: .7, .1
 
             Button:
-                text: 'Press to go back to homepage'
+                text: 'Press to return to homepage'
                 on_press:
                     root.manager.ids.rewards.to_homepage()
                     root.manager.transition.direction = 'right'
@@ -169,10 +179,47 @@
             size_hint: .7, .12
 
             Button:
-                text: 'Press to go back to homepage'
+                text: 'Press to return to homepage'
                 on_press:
                     root.manager.ids.info.to_homepage()
                     root.manager.transition.direction = 'down'
+
+<StudentQRCode>
+    name: "qr_code"
+    GridLayout:
+        orientation: 'vertical'
+        col: 1
+        rows: 7
+        spacing: 5
+        padding: 5
+        Button:
+            text: 'Student ID QRCode'
+            color: 0, 0, 0, 1
+            size_hint: 1, .1
+            background_normal: ''
+            background_down: ''
+            background_color: .88,.88,.88, 1
+            font_size: 20
+        Label:
+            size_hint: 1, .16
+        Label:
+            size_hint: 1, .16
+        Button:
+            text: "Press here to reveal your QRCode"
+            size_hint: .5, .16
+            on_press:
+                root.manager.ids.qrcode.qr_code()
+        Label:
+            size_hint: 1, .16
+        Label:
+            size_hint: 1, .16
+
+        Button:
+            text: 'Press to return to homepage'
+            size_hint: 1, .1
+            on_press:
+                root.manager.ids.qrcode.to_homepage()
+                root.manager.transition.direction = 'up'
 
 
 
