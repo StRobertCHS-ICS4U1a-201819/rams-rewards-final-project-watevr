@@ -91,7 +91,7 @@ class StudentQRCode(Screen):
         box = BoxLayout(orientation='vertical', padding=(10))
         popup = Popup(title="QRCode", content=box, size_hint=(None, None),
                       size=(500, 500), auto_dismiss=True)
-        box.add_widget(QRCodeWidget(data="Student qrcode"))
+        box.add_widget(QRCodeWidget(data="Student_qrcode"))
         popup.open()
 
     def to_homepage(self):
