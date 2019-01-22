@@ -115,13 +115,20 @@
                     text: "start"
                     on_press: root.dostart()
 
-
-
                 Button:
                     id: butt_detect
                     text: "detect"
                     size_hint: 0.5,1
                     on_press: root.capture()
+
+                Button:
+                    id: next
+                    size_hint: 0.3,1
+                    text: "next"
+                    on_press:
+                        root.manager.current = "screen_student_list"
+                        root.id_inputted()
+
 
 
         Screen:
