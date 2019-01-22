@@ -5,7 +5,8 @@
         id: main
     HomePage:
         id: home
-
+    RewardsHistory:
+        id: rewards
 
 
 <MainScreen>:
@@ -26,10 +27,6 @@
             font_size: 20
             text_size: self.size
             valign: "middle"
-
-        Label:
-            size_hint: .01, .01
-            width: 0
 
         Label:
             size_hint: (.1, .1)
@@ -80,13 +77,58 @@
             text: "Home Page"
         Button:
             text: 'Press to view History of Rewards Activity'
+            on_press:
+                root.manager.ids.home.to_rewards()
+                root.manager.transition.direction = 'left'
         Button:
             text: 'Press to view your Info/Reward Points'
         Button:
             text: 'Press to view your qrcode'
         Button:
             text: 'Logout'
+            on_press:
+                root.manager.ids.home.logout()
+                root.manager.transition.direction = 'right'
 
+<RewardsHistory>
+    name: "rewards_history"
+    container: container
+    GridLayout:
+        rows: 3
+        cols: 1
+        spacing: 5
+        padding: 5
+
+        Button:
+            text: "History of Rewards Activity"
+            color: 0, 0, 0, 1
+            size_hint: .7, .1
+            background_normal: ''
+            background_down: ''
+            background_color: .88,.88,.88, 1
+            font_size: 20
+
+        ScrollView:
+            size_hint: (1, .9)
+            bar_width: 10
+            bar_color: 1, 0, 0, 1   # red
+            bar_inactive_color: 0, 0, 1, 1   # blue
+            effect_cls: "ScrollEffect"
+            scroll_type: ['bars']
+
+            StackLayout:
+                id: container
+                size_hint_y: None
+
+        BoxLayout:
+            spacing: 5
+            size_hint: .7, .1
+
+            Button:
+                text: 'Press to go back to homepage'
+                on_press:
+                    root.manager.ids.rewards.to_homepage()
+                    root.manager.transition.direction = 'right'
 
 
 
