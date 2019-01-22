@@ -173,3 +173,13 @@ def get_single_reward(request, reward_num):
         reward_dict['student'].append(student.id)
 
     return HttpResponse(json.dumps(reward_dict))
+
+
+def get_user_login(request, username, password):
+    __username = username
+    __password = password
+    user = authenticate(username=__username, password=__password)
+    if user is not None and user.is_active:
+        return HttpResponse('True')
+    else:
+        return HttpResponse('False')
