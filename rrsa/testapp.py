@@ -46,6 +46,9 @@ class HomePage(Screen):
     def to_rewards(self):
         self.parent.current = 'rewards_history'
 
+    def to_info(self):
+        self.parent.current = 'student_info'
+
 class RewardsHistory(Screen):
     container = ObjectProperty(None)
 
@@ -60,6 +63,11 @@ class RewardsHistory(Screen):
     def add_text_inputs(self):
         for x in range(20):
             self.container.add_widget(Label(text="Reward Activity {}".format(x), size_hint_y=None, height=60))
+
+    def to_homepage(self):
+        self.parent.current = 'homepage'
+
+class StudentInfo(Screen):
 
     def to_homepage(self):
         self.parent.current = 'homepage'

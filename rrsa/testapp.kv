@@ -7,6 +7,8 @@
         id: home
     RewardsHistory:
         id: rewards
+    StudentInfo:
+        id: info
 
 
 <MainScreen>:
@@ -82,6 +84,9 @@
                 root.manager.transition.direction = 'left'
         Button:
             text: 'Press to view your Info/Reward Points'
+            on_press:
+                root.manager.ids.home.to_info()
+                root.manager.transition.direction = 'up'
         Button:
             text: 'Press to view your qrcode'
         Button:
@@ -129,6 +134,45 @@
                 on_press:
                     root.manager.ids.rewards.to_homepage()
                     root.manager.transition.direction = 'right'
+
+<StudentInfo>
+    name: "student_info"
+    GridLayout:
+        rows: 6
+        cols: 1
+        spacing: 5
+        padding: 5
+
+        Button:
+            text: "Student Info"
+            color: 0, 0, 0, 1
+            size_hint: .7, .1
+            background_normal: ''
+            background_down: ''
+            background_color: .88,.88,.88, 1
+            font_size: 20
+        Label:
+            id: full_name
+            size_hint: .9, .17
+            text: "Full Name: "
+        Label:
+            size_hint: .9, .17
+            text: "Homeroom: "
+        Label:
+            size_hint: .9, .17
+            text: "Id: "
+        Label:
+            size_hint: .9, .17
+            text: "Reward Points: "
+        BoxLayout:
+            spacing: 5
+            size_hint: .7, .12
+
+            Button:
+                text: 'Press to go back to homepage'
+                on_press:
+                    root.manager.ids.info.to_homepage()
+                    root.manager.transition.direction = 'down'
 
 
 
