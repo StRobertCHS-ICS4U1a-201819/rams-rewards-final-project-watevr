@@ -139,7 +139,7 @@ class RootWidget(TabbedPanel):
        camera = self.ids['qrcam']
        timestr = time.strftime("%Y%m%d_%H%M%S")
        ret, frame = capture.read()
-       
+
        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
        barcodes = pyzbar.decode(gray)
        for barcode in barcodes:
