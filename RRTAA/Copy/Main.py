@@ -15,7 +15,7 @@ import kivy
 kivy.require("1.10.1")
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
-from kivy.properties import ObjectProperty
+from kivy.properties import ObjectProperty, ListProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.clock import Clock
 from kivy.uix.image import Image
@@ -27,17 +27,30 @@ import cv2
 
 import requests
 import json
+import urllib.request
 
+from kivy.core.text import LabelBase
+LabelBase.register(name="fancy", fn_regular="fancy.ttf")
+LabelBase.register(name="quick", fn_regular="quick.otf")
+LabelBase.register(name="brush", fn_regular="brush.otf")
+LabelBase.register(name="letter", fn_regular="grandpaletter.otf")
+LabelBase.register(name="violet", fn_regular="violet.otf")
+LabelBase.register(name="sig", fn_regular="signature.ttf")
+LabelBase.register(name="big", fn_regular="bigbrush.ttf")
+LabelBase.register(name="thick", fn_regular="thick.ttf")
+LabelBase.register(name="ani", fn_regular="animal.ttf")
+LabelBase.register(name="basic", fn_regular="basic.otf")
+LabelBase.register(name="hand", fn_regular="hand.ttf")
 
 class RootWidget(TabbedPanel):
 
     manager = ObjectProperty(None)
 
     reward_data = ObjectProperty(None)
-    reward_activity = ObjectProperty(None)
+    reward_activity = ListProperty(None)
 
     student_data = ObjectProperty(None)
-    student_name_list = ObjectProperty(None)
+    student_name_list = ListProperty(None)
 
     activity_selected = ObjectProperty(None)
     activity_order = ObjectProperty(None)
@@ -60,12 +73,13 @@ class RootWidget(TabbedPanel):
         '''
 
         # request of information of rewards
-        req = requests.get('http://localhost:8000/get_all_reward/')
+        req = requests.get('http://10.112.6.115:8000/get_all_reward/')
 
         print(req.status_code)
 
+
         # decode the json file and store the information
-        self.reward_data = json.loads(req)
+        self.reward_data = req.json()
 
         # extract all activities name into a list
         for reward in self.reward_data['reward_name']:
@@ -78,12 +92,12 @@ class RootWidget(TabbedPanel):
         '''
 
         # request of information of students
-        req = requests.get('http://localhost:8000/get_all_users/')
+        req = requests.get('http://10.130.182.250:8000/get_all_users/')
 
         print(req.status_code)
 
         # decode the json file and store the information
-        self.student_data = json.loads(req)
+        self.student_data = req.json()
 
         # extract all students' name into a list
         for student in self.student_data['user_name']:

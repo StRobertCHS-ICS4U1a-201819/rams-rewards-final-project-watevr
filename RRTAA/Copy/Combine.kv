@@ -16,11 +16,13 @@
                         pos: self.pos
 
                 Button:
-                    pos: 550, 220
-                    background_color: (0.75, 0, 0, 1)
-                    text: 'Screen One'
-                    size_hint: .2, .155
-                    on_press:
+                   pos: 500, 320
+                   background_color: (1, 1, 1, 0)
+                   text: 'Click Here!'
+                   font_name: "brush"
+                   font_size: 40
+                   color: 0, 0, 0, 1
+                   size_hint: .3, .155
                         root.manager.current = "screen_four"
                         root.reward()
         Screen
@@ -34,10 +36,13 @@
                         pos: self.pos
 
                 Button:
-                    pos: 443, 220
-                    background_color: (1, 0.49, 0.23, 1)
-                    size_hint: .25, .128
-                    text: 'Score History'
+                    pos: 350, 450
+                    background_color: (1, 1, 1, 0)
+                    size_hint: .5, .155
+                    text: 'Wanna See History?'
+                    font_name: "brush"
+                    font_size: 40
+                    color: 1, 1, 1, 1
                     on_press:
                         root.manager.current = "screen_student_list"
         Screen
@@ -51,82 +56,111 @@
                         pos: self.pos
 
                 Button:
-                    text: 'First'
-                    background_color: (2.5, 2.5, 0, 1.0)
-                    pos: 250, 225
-                    size_hint: .1, .1
+                    text: 'Reward'
+                    background_color: (1, 1, 1, 0)
+                    pos: 50, 280
+                    font_name: "brush"
+                    font_size: 40
+                    color: 1, 1, 1, 1
+                    size_hint: .25, .155
                     on_press:
                         root.manager.current = "screen_date_list"
 
                 Button:
-                    text: 'Second'
-                    background_color: (1.0, 0.1, 1.0, 1.0)
-                    pos: 593, 268
-                    size_hint: .1, .1
-                    on_press:
+                    text: 'Delivered'
+                    background_color: (1, 1, 1, 0)
+                    pos: 30, 220
+                    font_name: "brush"
+                    font_size: 40
+                    color: 1, 1, 1, 1
+                    size_hint: .3, .155
                         root.manager.current = "screen_date_list"
 
         Screen:
             id: sc4
             name: 'screen_four'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
+            FloatLayout:
+                canvas:
+                    Rectangle:
+                        source: 'foggy.jpg'
+                        size: self.size
+                        pos: self.pos
 
                 Label:
-                    text: "First Step"
-
-
-                Spinner:
-                    text: "Reward Activities"
-                    values: root.rewardActivity
-                    id: spinner_id
-                    on_text: root.spinner_clicked(spinner_id.text)
+                    text: "Distribution"
+                    pos: 0, 80
+                    size_hint: 1, 1
+                    font_size: 150
+                    font_name: "letter"
 
                 Button:
                     text: 'Next'
+                    background_color: 0, 0, 0, 0
+                    font_name: "letter"
+                    pos: 320, 80
+                    font_size: 50
+                    color: 1, 1, 1, 1
+                    size_hint: 0.2, 0.1
                     on_press:
                         root.manager.current = "QR_scanner"
+                Spinner:
+                    text: "Add Activities"
+                    size_hint: 0.4, 0.1
+                    font_name: "letter"
+                    background_color: 0, 0, 0, 0
+                    pos: 250, 150
+                    font_size: 50
+                    color: 1, 1, 1, 1
+                    values: ["Highest Mark", "Average over 85", "Club Meeting", "Sport Team", "Activities Leader"]
+                    id: spinner_id
+                    on_text: root.spinner_clicked1(spinner_id.text)
 
         Screen:
             id: sc5
             name: 'QR_scanner'
-            BoxLayout:
-                orientation: "vertical"
-
-                Label:
-                    height: 20
-                    size_hint_y: None
-                    text: 'Testing the camera'
-
-            KivyCamera:
-                id: qrcam
-
-            BoxLayout:
-                orientation: "horizontal"
-                height: 20
-                size_hint_y: None
+            FloatLayout:
+                canvas:
+                    Rectangle:
+                        source: 'screen.jpg'
+                        size: self.size
+                        pos: self.pos
+                KivyCamera:
+                    id: qrcam
+                    size_hint: 1, 2
+                    pos: 0, -280
 
                 Button:
                     id: butt_start
-                    size_hint: 0.5,1
+                    size_hint: 0.125, .1
+                    font_size: 20
+                    font_name: "thick"
                     text: "start"
+                    pos: 130, 30
+                    color: 1, 1, 1, 1
+                    background_color: 0, 0, 0, 0
                     on_press: root.dostart()
 
                 Button:
                     id: butt_detect
                     text: "detect"
-                    size_hint: 0.5,1
+                    font_size: 20
+                    font_name: "thick"
+                    size_hint: 0.125, .1
+                    pos: 360, 30
+                    color: 1, 1, 1, 1
+                    background_color: 0, 0, 0, 0
                     on_press: root.capture()
 
                 Button:
                     id: next
-                    size_hint: 0.3,1
                     text: "next"
+                    font_size: 20
+                    font_name: "thick"
+                    size_hint: 0.125, .1
+                    pos: 590, 30
+                    color: 1, 1, 1, 1
+                    background_color: 0, 0, 0, 0
                     on_press:
-                        root.id_inputted()
                         root.manager.current = "screen_date"
 
 
@@ -135,121 +169,198 @@
         Screen:
             id: sc6
             name: 'screen_student_list'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
+            FloatLayout:
+                canvas:
+                    Rectangle:
+                        source: 'eleph.jpg'
+                        size: self.size
+                        pos: self.pos
+
+                Label:
+                    text: "Student"
+                    font_name: "ani"
+                    font_size: 150
+                    pos: 0, 30
 
                 Spinner:
                     text: "Student List"
-                    values: root.student_name_list
+                    background_color: 0, 0, 0, 0
+                    font_name: "ani"
+                    pos: 130, 170
+                    font_size: 30
+                    color: 1, 1, 1, 1
+                    size_hint: 0.4, 0.1
+                    values: ["Jerry Cui", "Evan Bai", "Justin Guo", "Waldon Zhang"]
                     id: spinner_id
-                    on_text: root.spinner_clicked2(spinner_id.text)
+                    on_text:
+                        root.spinner_clicked2(spinner_id.text)
 
                 Button:
                     text: 'Show history'
+                    background_color: 0, 0, 0, 0
+                    font_name: "ani"
+                    pos: 330, 170
+                    font_size: 30
+                    color: 1, 1, 1, 1
+                    size_hint: 0.4, 0.1
                     on_press:
                         root.manager.current = "screen_student_history"
-
-                Button:
-                    text: 'Home'
-                    on_press:
-                        root.manager.current = "screen_two"
 
 
         Screen:
             id: sc7
             name: 'screen_student_history'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
+            FloatLayout:
+                canvas:
+                    Rectangle:
+                        source: 'waves.jpg'
+                        size: self.size
+                        pos: self.pos
 
                 Label:
                     text: str(root.reward_history)
+                    background_color: 0, 0, 0, 0
+                    font_name: "basic"
+                    pos: 0, 0
+                    font_size: 130
+                    color: 0, 0, 0, 1
 
                 Button:
-                    text: 'Back Page'
+                    text: 'Back'
+                    background_color: 0, 0, 0, 0
+                    font_name: "basic"
+                    pos: 600, 70
+                    font_size: 30
+                    color: 0, 0, 0, 1
+                    size_hint: 0.125, 0.1
                     on_press:
                         root.manager.current = "screen_student_list"
 
 
         Screen:
-            id: sc8
-            name: 'screen_date'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
-
-                Label:
-                    text: 'Enter the date of the activities that you entered'
+            FloatLayout:
+                canvas:
+                    Rectangle:
+                        source: 'paper.jpg'
+                        size: self.size
+                        pos: self.pos
 
                 Button:
                     text: 'Submit'
+                    font_name: "hand"
+                    font_size: 20
+                    color: 0, 0, 0, 1
+                    background_color: 0, 0, 0, 0
+                    size_hint: .125, .1
+                    pos: 250, 100
                     on_press:
-
                         root.add_date(ti.text)
                         root.set_date_history()
 
                 TextInput:
                     id: _a
-                    hint_text: 'hello'
+                    font_name: "hand"
+                    font_size: 20
+                    color: 1, 1, 1, 1
+                     hint_text: 'hello'
                     multiline: 'False'
-                    size: 500,400
+                    size: 330,230
+                    pos: 280, 120
+                    background_color: 1, 1, 1, 0
                     size_hint: None, None
                     text:'Enter here'
                     id: ti
 
                 Button:
                     text: 'Home'
+                    font_name: "hand"
+                    font_size: 20
+                    background_color: 0, 0, 0, 0
+                    color: 0, 0, 0, 1
+                    size_hint: .125, .1
+                    pos: 460, 100
                     on_press:
                         root.manager.current = "screen_one"
         Screen
             id: sc9
             name: 'screen_activity_list'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
+            FloatLayout:
+                canvas:
+                    Rectangle:
+                        source: 'violet.jpg'
+                        size: self.size
+                        pos: self.pos
+
+                Label:
+                    text: "Rewards"
+                    font_name: "violet"
+                    pos: 0, 50
+                    font_size: 150
 
                 Spinner:
-                    text: "Activity List"
-                    values: root.reward_activity
+                    text: "Select Activities"
+                    background_color: (1, 1, 1, 0)
+                    pos: 120, 90
+                    font_name: "sig"
+                    font_size: 30
+                    color: 1, 1, 1, 1
+                    size_hint: .25, .155
+                    values: ["Highest Mark", "Average over 85", "Club Meeting", "Sport Team", "Activities Leader"]
                     id: spinner_id
                     on_text: root.spinner_clicked3(spinner_id.text)
 
                 Button:
                     text: 'Show history'
+                    background_color: (1, 1, 1, 0)
+                    pos: 480, 90
+                    font_name: "sig"
+                    font_size: 30
+                    color: 1, 1, 1, 1
+                    size_hint: .25, .155
                     on_press:
                         root.manager.current = "screen_date_history"
-
-                Button:
-                    text: 'Home'
-                    on_press:
-                        root.manager.current = "screen_three"
 
         Screen:
             id: sc10
             name: 'screen_date_history'
-            BoxLayout:
-                orientation: "vertical"
-                size: root.size
-                spacing: 20
-                padding: 20
+            FloatLayout:
+                canvas:
+                    Rectangle:
+                        source: 'red.jpg'
+                        size: self.size
+                        pos: self.pos
+
+                Label:
+                    text: "HIST"
+                    font_name: "big"
+                    font_size: 500
+                    color: 1, 1, 1, 1
+                    pos: 20, 100
+
+                Label:
+                    text: "ORY"
+                    font_name: "big"
+                    font_size: 500
+                    color: 1, 1, 1, 1
+                    pos: 0, -190
 
                 Label:
                     text: str(root.date_history)
+                    font_name: "thick"
+                    font_size: 80
+                    color: 0, 0, 0, 1
+                    pos: 0, 0
 
                 Button:
-                    text: 'Back Page'
+                    text: 'Back'
+                    background_color: (1, 1, 1, 0)
+                    pos: 600, 30
+                    font_name: "thick"
+                    font_size: 40
+                    color: 1, 1, 1, 1
+                    size_hint: .25, .155
                     on_press:
                         root.manager.current = "screen_activity_list"
-
 
 
 
